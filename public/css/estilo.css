@@ -24,6 +24,7 @@ body {
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
 
+  --branco: #e6e6e6;
   --dourado-principal: #A26300;
   --cinza-escuro: #141418;
   --cinza-principal: #1C1C22;

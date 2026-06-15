@@ -42,3 +42,20 @@
 .card h2 {
     margin: 0;
 }
+
+.dash-button {
+    padding: 14px 40px;
+    border: 1.5px solid var(--branco);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.dash-button-selected {
+    padding: 14px 40px;
+    background-color: #e6e6e6;
+    border: 1.5px solid var(--branco);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+}
