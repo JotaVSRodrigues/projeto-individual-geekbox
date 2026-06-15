@@ -151,6 +151,9 @@ body {
 .container-text {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .content-header {
@@ -158,8 +161,12 @@ body {
 }
 
 .bg-number{
+  position: absolute;
+  top: -140px;
+  left: -10px;
+
   font-family: var(--fonte-principal);
-  font-size: 144px;
+  font-size: 210px;
   font-weight: 400;
   line-height: 1;
   color: rgba(255, 255, 255, 0.06);
@@ -180,13 +187,13 @@ body {
 }
 
 
-.bg-number {
-  position: absolute;
-  top: -130px;
-}
 
-.header-tag:first-child {
-  
+
+.line {
+  display: block;
+  background-color: var(--dourado-principal);
+  width: 36px;
+  height: 2px;
 }
 
 .header-tag:nth-child(2) {
@@ -199,7 +206,7 @@ body {
 
 
 .content-img img {
-  height: 400px;
+  height: 500px;
 }
 
 .content-title h2 {
@@ -207,6 +214,8 @@ body {
   font-size: 4em;
   font-weight: 200;
   line-height: 1;
+
+  margin: 0;
 }
 
 .content-text p {
