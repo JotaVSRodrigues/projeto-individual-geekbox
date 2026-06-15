@@ -1,0 +1,19 @@
+.logo-img {
+    display: flex;
+}
+
+.logo-img img {
+    height: 30px;
+}
+
+.btn-login {
+    background-color: #A26300;
+    color: #e6e6e6;
+    border: 1.5px solid #e6e6e6;
+    border-radius: 6px;
+    padding: 8px 28px;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
