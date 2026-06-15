@@ -25,6 +25,7 @@ body {
   --tamanho-footer: 65px;
 
   --dourado-principal: #A26300;
+  --cinza-escuro: #141418;
   --cinza-principal: #1C1C22;
   --cinza-secundario: #4D4D4D;
   --cinza-conteudo: #7a7a7a;
@@ -228,6 +229,12 @@ body {
   color: var(--cinza-conteudo);
 }
 
+/* CTA */
+
+.cta {
+  margin-top: 180px;
+}
+
 /* FOOTER */
 
 .footer {
@@ -271,24 +278,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
-}
-
-.card {
-  width: 50%;
-  background-color: #e5e5e5;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  color: palevioletred;
-  flex-direction: column;
-  height: fit-content;
-  padding: 20px 0;
-}
-
-.card h2 {
-  margin: 0;
-  font-size: 30px;
 }
 
 .formulario {

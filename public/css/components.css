@@ -17,3 +17,27 @@
     font-weight: 700;
     font-size: 14px;
 }
+
+.card {
+    width: 40%;
+    height: fit-content;
+
+    background-color: var(--cinza-escuro);
+    border: 1px solid var(--cinza-principal);
+    border-radius: 16px;
+    padding: 36px 32px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    gap: 4px;
+}
+
+.card p {
+    color: var(--cinza-conteudo);
+}
+
+.card h2 {
+    margin: 0;
+}
