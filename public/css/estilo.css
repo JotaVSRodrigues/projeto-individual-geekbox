@@ -275,8 +275,6 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
 }
 
 .login .container {
@@ -290,7 +288,18 @@ body {
   height: 90%;
   width: 80%;
   justify-content: space-around;
-  flex-direction: column;
+  flex-direction: column; 
+}
+
+.login-div {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 24px;
+}
+
+.login-div button {
+  width: 140px;
 }
 
 .formulario span {
@@ -299,10 +308,13 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+  background-color: transparent;
+  padding: 8px 10px;
+  width: 100%;
+  margin-bottom: 14px;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 6px;
+  color: #e6e6e6;
 }
 
 .formulario select {
@@ -386,11 +398,8 @@ body {
 }
 
 input {
-  margin-bottom: 10px;
-  border: 2px solid #32b9cd;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
+  font-family: var(--fonte-principal);
+
 }
 
 .btn {

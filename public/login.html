@@ -11,6 +11,7 @@
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/components.css">
     <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
@@ -47,6 +48,7 @@
                 <span id="mensagem_erro"></span>
             </div>
         </div>
+
         <div class="container">
             <div class="card card-login">
                 <h2>Olá de volta!</h2>
@@ -59,7 +61,9 @@
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
+                    <div class="login-div">
+                        <button class="btn-login" onclick="entrar()">Entrar</button>
+                    </div>
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
@@ -71,13 +75,6 @@
         </div>
     </div>
 
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
-        </div>
-    </div>
-    <!--footer fim-->
 
 </body>
 
