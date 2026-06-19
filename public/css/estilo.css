@@ -55,7 +55,7 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 1px solid var(--cinza-apagado);
+  border-bottom: 1px solid var(--cinza-secundario);
   width: 100%;
   position: fixed;
   background-color: rgba(13, 13, 15, 0.8);

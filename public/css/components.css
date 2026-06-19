@@ -81,6 +81,15 @@
     margin-bottom: 24px;
 }
 
+.register {
+    background: linear-gradient(170deg, var(--cinza-escuro) 65%, var(--dourado-principal) 100%);
+}
+
+#register-img {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.8)), 
+    url('../assets/poster/hp.png');
+}
+
 /* .card-login-header {
     width: 100%;
     height: fit-content;
@@ -89,9 +98,15 @@
     
     padding-right: 42px;
 } */
-
 .card-login-header h2 {
     margin-top: 72px;
+
+    width: 90%;
+    line-height: 1;
+}
+
+.card-register-header h2 {
+    margin-top: 32px;
 
     width: 90%;
     line-height: 1;
@@ -123,7 +138,8 @@
     gap: 4px;
     flex: 4 1 300px;
 
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.8)), url('../assets/poster/lotr.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.8)), 
+    url('../assets/poster/lotr.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
