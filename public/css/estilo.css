@@ -21,11 +21,12 @@ body {
   --tamanho-banner: calc(100vh - var(--tamanho-header));
   /* --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px); */
   --tamanho-section: fit-content;
-  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  /* --tamanho-login: calc(100vh - var(--tamanho-header)); */
+  --tamanho-login: 74vh;
   --tamanho-footer: 65px;
 
   --branco: #e6e6e6;
-  --dourado-principal: #A26300;
+  --dourado-principal: rgb(162, 99, 0);
   --cinza-escuro: #141418;
   --cinza-principal: #1C1C22;
   --cinza-secundario: #4D4D4D;
@@ -62,6 +63,10 @@ body {
   z-index: 9999;
 }
 
+.header-login {
+  position: relative;
+}
+
 .header .container {
   justify-content: space-between;
   align-items: center;
@@ -86,7 +91,7 @@ body {
   justify-content: space-between;
   list-style: none;
 
-  color: #e3b062;
+  color: var(--dourado-principal);
 }
 
 .header h1 {
@@ -118,7 +123,7 @@ body {
   font-family: var(--fonte-titulo);
 }
 
-.banner .container span {
+.italic-span {
   font-style: italic;
   color: var(--dourado-principal);
 }
@@ -274,21 +279,34 @@ body {
 
 /* LOGIN */
 
+.main-container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+  height: 100vh;
+
+  margin-bottom: 24px;
+}
+
 .login {
   height: var(--tamanho-login);
+  padding: 80px;
 }
 
 .login .container {
   justify-content: center;
   align-items: center;
+
   height: 100%;
+  width: 100%;
 }
 
 .formulario {
   display: flex;
-  height: 90%;
-  width: 80%;
-  justify-content: space-around;
+  height: fit-content;
+  width: 100%;
+  justify-content: center;
   flex-direction: column; 
 }
 
@@ -311,9 +329,9 @@ body {
 .formulario input {
   background-color: transparent;
   padding: 8px 10px;
-  width: 100%;
+  /* width: 100%; */
   margin-bottom: 14px;
-  border: 1px solid var(--cinza-borda);
+  border: 1px solid var(--branco);
   border-radius: 6px;
   color: #e6e6e6;
 }
@@ -362,6 +380,12 @@ body {
 
 #div_erros_login {
   display: none
+}
+
+.login-container {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
 }
 
 /* FORMULARIO */
