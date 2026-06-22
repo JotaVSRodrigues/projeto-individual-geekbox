@@ -7,7 +7,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     align-self: flex-start;
-    margin-left: 42px;
+    /* margin-left: 42px; */
     
 }
 
@@ -39,7 +39,66 @@
     font-weight: 700;
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
 
+  line-height: 1;
+  margin: 0;
+  padding: 0; 
+  gap: 12px;
+}
+
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  margin: 0;
+}
+
+.hello h3 {
+  /* color: #e3b062; */
+  font-family: var(--fonte-titulo);
+  font-weight: 300;
+  font-size: 2rem;
+  align-items: center;
+  /* text-align: center; */
+}
+
+.hello h3 span {
+  /* font-weight: 400; */
+  font-style: italic;
+}
+
+.hello h4 {
+  font-family: var(--fonte-secundaria);
+  font-weight: 500;
+  /* text-align: center; */
+}
+
+
+h3 {
+  line-height: 1;
+  margin: 12px 0;
+}
+
+h4 {
+  line-height: 1;
+  margin: 0;
+}
+
+.icon-img {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+}
+/* 
+.icon-img img {
+  height: 120px;
+} */
 
 /* ================== */
 
@@ -373,12 +432,12 @@ canvas {
   left: 0;
   z-index: 999;
   height: 100vh;
-  width: 12%;
+  width: 11%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 48px 0;
-  gap: 72px;
+  padding: 48px 32px;
+  gap: 56px;
   align-items: center;
   border-right: 1px solid var(--cinza-principal);
   background-color: var(--cinza-principal);
@@ -399,21 +458,6 @@ canvas {
   color: #32b9cd;
 }
 
-.hello {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.hello h3 {
-  color: #e3b062;
-  font-weight: 300;
-  font-size: 1.2rem;
-}
-
-.hello h3 span {
-  font-weight: 800;
-}
 
 .btn-nav {
   width: 40%;
@@ -447,17 +491,18 @@ canvas {
 }
 
 .btn-logout {
-  margin: 0;
-  padding: 0;
+  background-color: var(--dourado-principal);
+  color: var(--branco);
+  border: 2px solid var(--branco);
+  border-radius: 6px;
+  padding: 6px 24px;
+  cursor: pointer;
+
+  font-family: var(--fonte-principal), sans-serif;
+  font-weight: 900;
+
   width: 100%;
 
   align-self: flex-start;
-  margin: 0 42px;
-  background-color: #32b9cd;
-  color: white;
-  border-radius: 10px;
   text-align: center;
-  padding: 10px 15px;
-  /* margin-bottom: 100px; */
-  cursor: pointer;
 }
