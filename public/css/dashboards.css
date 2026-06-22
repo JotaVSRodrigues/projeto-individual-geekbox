@@ -372,6 +372,57 @@ h4 {
     width: 65%;
 }
 
+.buttons-items {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.search-bar input {
+    background-image: url('../assets/icons/search-icon.png');
+    background-repeat: no-repeat;
+    background-position: 290px center;
+    background-size: 20px;
+    padding: 35px;
+
+    background-color: #1C1C22;
+    padding: 8px 12px;
+    border: 1px solid #282830;
+    border-radius: 10px;
+    height: 44px;
+    width: 320px;
+    margin: 0 15px 20px 0;
+    transition: border 0.1s ease-in;
+
+    font-family: var(--fonte-principal), sans-serif;
+    color: var(--branco);
+    font-size: 1.1em;
+}
+
+.btn-cadastro-div {
+    display: flex;
+    flex-direction: row;
+
+    margin: 0 0 20px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-cadastro {
+    background-color: #A26300;
+    color: #e6e6e6;
+    border: 2px solid #e6e6e6;
+    border-radius: 6px;
+    padding: 10px 36px;
+    cursor: pointer;
+    transition: 0.3s ease, background-color 0.3s ease;
+
+    font-family: 'Syne', sans-serif;
+    font-weight: 750;
+}
 
 /* ================== */
 
