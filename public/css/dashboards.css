@@ -276,6 +276,26 @@ h4 {
 
 /* ================== */
 
+
+/* WISHLIST */
+
+.content-container {
+   height: 100%;
+   width: 100%;
+   padding: 20px 0;
+}
+
+.content-wishlist {
+    display: flex;
+    flex-direction: row;
+    
+    height: 70vh;
+    width: 100%;
+    gap: 50px;
+}
+
+/* ================== */
+
 .label-captura {
   display: flex;
   justify-content: center;

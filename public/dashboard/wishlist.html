@@ -55,38 +55,46 @@
         </div>
 
         <div class="dash-right">
+            <div class="container">
+                <div class="content-container">
+                    <div class="content-wishlist anim-scale-in anim-d1">
+                        
+                        <div class="card-selected anim-fade-up anim-d2 dash-card">
+                            <div class="content-selected" id="div-content-selected">
+                                <div class="no-content">
+                                    <p>Selecione algum item</p>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="items-list anim-scale-in anim-d1">
+                            <div class="buttons-items">
+                                <div class="search-bar anim-fade-up anim-d3">
+                                    <input id="ipt_search_bar" type="text" placeholder="O Poderoso Chefão...">                                 
+                                </div>
+                                <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                    <button onclick="criarItemCard(modalFiltro)" class="btn-cadastro">
+                                        <div class="funnel-div"><img src="../assets/images/icons/funnel-icon.png" alt=""> Filtrar</div>
+                                    </button>
+                                </div>
+                                <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                    <button onclick="criarItemCard(modalMeta)" class="btn-cadastro btn-wishlist">+ Nova meta</button>
+                                </div>
 
-            <div class="avisos">
-                <div id="alerta">
-                </div>
-                <div class="container">
-                    <h1>Publicar um aviso</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <br>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
+                                <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                    <button onclick="criarItemCard(modalItem)" class="btn-cadastro  btn-wishlist">+ Novo
+                                        item</button>
+                                </div>
+
+                            </div>
+                            <div class="field-list-container">
+                                <div id="field-list" class="list">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div>    
             </div>
         </div>
     </div>
