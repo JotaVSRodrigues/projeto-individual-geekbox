@@ -279,24 +279,28 @@ h4 {
 
 /* WISHLIST */
 
+.wishlist-container {
+  height: 100%;
+}
+
 .content-container {
    height: 100%;
    width: 100%;
-   padding: 20px 0;
+   padding: 40px 0;
 }
 
 .content-wishlist {
     display: flex;
     flex-direction: row;
     
-    height: 70vh;
+    height: 100%;
     width: 100%;
     gap: 50px;
 }
 
 .card-selected {
     height: 100%;
-    width: 35%;
+    width: 50%;
     display: flex;
     flex-direction: column;
 }
