@@ -230,6 +230,50 @@ h4 {
     width: 130vw;
 }
 
+
+/* HEATMAP */
+
+
+.subtitle-heatmap {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 12px;
+}
+
+.quadrado {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #1C1C22;
+    cursor: default;
+}
+
+.subtitle-heatmap .quadrado:nth-child(2) {
+    background-color: #1C1C22;
+}
+
+.subtitle-heatmap .quadrado:nth-child(3) {
+    background-color: rgba(162, 99, 0, 0.45);
+}
+
+.subtitle-heatmap .quadrado:nth-child(4) {
+    background-color: rgba(162, 99, 0, 0.65);
+}
+
+.subtitle-heatmap .quadrado:nth-child(5) {
+    background-color: rgba(162, 99, 0, 0.85);
+}
+
+.subtitle-heatmap .quadrado:nth-child(6) {
+    background-color: rgba(162, 99, 0, 1);
+}
+
+.subtitle-heatmap span {
+    font-family: var(--fonte-secundaria), var(--fonte-principal), sans-serif;
+    color: var(--cinza-secundario);
+}
+
 /* ================== */
 
 .label-captura {
