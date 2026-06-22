@@ -131,20 +131,45 @@ h4 {
   align-items: flex-start;
 }
 
+.card-resume span {
+    color: #4D4D4D;
+    font-family: var(--fonte-secundaria), var(--fonte-principal), sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-bottom: 0;
+}
+
+.kpi-mensagem {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.kpi-mensagem span {
+    color: #A26300;
+}
+
+#kpi-concluidos, #kpi-conclusao, #kpi-horas, #kpi-semanal {
+    color: var(--branco);
+}
+
 #kpi-1 {
-    border-top: 2px solid #A26300;
+    border-top: 2px solid var(--dourado-principal);
 }
 
 #kpi-2 {
-    border-top: 2px solid #1D9E75;
+    border-top: 2px solid var(--verde-escuro);
 }
 
 #kpi-3 {
-    border-top: 2px solid #D4537E;
+    border-top: 2px solid var(--rosa);
 }
 
 #kpi-4 {
-    border-top: 2px solid #5E56C4;
+    border-top: 2px solid var(--azul);
 }
 
 /* ================== */
