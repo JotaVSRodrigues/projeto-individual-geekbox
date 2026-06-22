@@ -1,5 +1,41 @@
 /* pagina mural */
 
+
+.navigation-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+}
+
+.navigation-buttons ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    gap: 10px;
+    height: fit-content;
+    padding: 10px 0;
+}
+
+.navigation-buttons ul a {
+    border: 2px solid #4D4D4D;
+    border-radius: 6px;
+
+    padding: 10px 20px;
+
+    height: 30px;
+    width: fit-content;
+
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* ================== */
+
 .label-captura {
   display: flex;
   justify-content: center;
