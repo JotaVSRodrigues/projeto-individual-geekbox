@@ -112,6 +112,41 @@ h4 {
     gap: 16px;
 }
 
+.dash-card {
+    padding: 8px 12px;
+    border: 1px solid #1C1C22;
+    border-radius: 10px;
+    background-color: #141418;
+}
+
+.kpi {
+    width: 100%;
+    gap: 0;
+}
+
+.dash-card.kpi {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#kpi-1 {
+    border-top: 2px solid #A26300;
+}
+
+#kpi-2 {
+    border-top: 2px solid #1D9E75;
+}
+
+#kpi-3 {
+    border-top: 2px solid #D4537E;
+}
+
+#kpi-4 {
+    border-top: 2px solid #5E56C4;
+}
+
 /* ================== */
 
 .label-captura {
@@ -428,7 +463,6 @@ canvas {
 
 .janela {
   display: flex;
-  /* width: 100vw; */
 }
 
 .header-left a {
@@ -437,12 +471,12 @@ canvas {
 }
 
 .header-left {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
   z-index: 999;
   height: 100vh;
-  width: 11%;
+  width: 12%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -455,11 +489,11 @@ canvas {
 
 .dash-right {
   display: flex;
-  width: 70%;
+  width: 100%;
   height: fit-content;
-  position: relative;
-  top: 0;
-  left: 25%;
+  /* position: relative; */
+  /* top: 0;
+  left: 25%; */
   height: 100vh;
   overflow: auto;
 }
