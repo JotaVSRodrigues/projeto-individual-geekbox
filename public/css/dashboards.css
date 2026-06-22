@@ -152,6 +152,14 @@ h4 {
     color: #A26300;
 }
 
+.kpi-main-data {
+    font-family: var(--fonte-titulo), sans-serif;
+    font-size: 3.5em;
+    font-weight: 200;
+    margin: 0;
+    line-height: 0.7;
+}
+
 #kpi-concluidos, #kpi-conclusao, #kpi-horas, #kpi-semanal {
     color: var(--branco);
 }
