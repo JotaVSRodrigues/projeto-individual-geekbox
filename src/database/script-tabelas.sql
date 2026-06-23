@@ -1,58 +1,95 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql server
-*/
-
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
-);
-
 CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    avatar_url VARCHAR(255),
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE categoria (
+    id_categoria INT NOT NULL AUTO_INCREMENT,
+    nome_categoria VARCHAR(45),
+
+    PRIMARY KEY (id_categoria)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE genero (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(80) NOT NULL,
+    id_categoria INT,
+
+    PRIMARY KEY (id),
+
+    CONSTRAINT fk_genero_categoria
+        FOREIGN KEY (id_categoria)
+        REFERENCES categoria(id_categoria)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+CREATE TABLE item (
+    id INT NOT NULL AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	temperatura DECIMAL,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+    status ENUM(
+        'wishlist',
+        'em_progresso',
+        'concluido',
+        'pausado',
+        'abandonado'
+    ) DEFAULT 'wishlist',
+
+    classificacao TINYINT DEFAULT 0,
+    resenha TEXT,
+    horas DECIMAL(6,1),
+    iniciado_em DATE,
+    concluido_em DATE,
+
+    criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    genero_id INT,
+    url_imagem VARCHAR(255),
+
+    PRIMARY KEY (id),
+
+    CONSTRAINT fk_item_usuario
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuario(id),
+
+    CONSTRAINT fk_item_categoria
+        FOREIGN KEY (categoria_id)
+        REFERENCES categoria(id_categoria),
+
+    CONSTRAINT fk_item_genero
+        FOREIGN KEY (genero_id)
+        REFERENCES genero(id),
+
+    CONSTRAINT chk_classificacao
+        CHECK (classificacao BETWEEN 0 AND 5)
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+CREATE TABLE meta (
+    id INT NOT NULL AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    ano INT,
+
+    PRIMARY KEY (id),
+
+    CONSTRAINT uk_meta
+        UNIQUE (usuario_id, categoria_id, ano),
+
+    CONSTRAINT fk_meta_usuario
+        FOREIGN KEY (usuario_id)
+        REFERENCES usuario(id),
+
+    CONSTRAINT fk_meta_categoria
+        FOREIGN KEY (categoria_id)
+        REFERENCES categoria(id_categoria)
+);
