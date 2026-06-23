@@ -26,7 +26,7 @@ body {
   /* --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px); */
   --tamanho-section: fit-content;
   /* --tamanho-login: calc(100vh - var(--tamanho-header)); */
-  --tamanho-login: 74vh;
+  --tamanho-login: calc(100vh - var(--tamanho-header));
   --tamanho-footer: 65px;
 
   --branco: #e6e6e6;
