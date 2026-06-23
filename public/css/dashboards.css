@@ -123,6 +123,7 @@ h4 {
 
 .icon-img {
   display: flex;
+  align-self: center;
   /* justify-content: center;
   align-items: center; */
 }
@@ -776,7 +777,7 @@ canvas {
   left: 0;
   z-index: 999;
   height: 100vh;
-  width: 12%;
+  width: 10%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -786,6 +787,9 @@ canvas {
   border-right: 1px solid var(--cinza-principal);
   background-color: var(--cinza-principal);
 }
+
+
+
 
 .dash-right {
   display: flex;
