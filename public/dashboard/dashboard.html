@@ -484,5 +484,72 @@ function carregarMetas() {
         });
 }
 
+function carregarHeatmap() {
+    fetch(`/estatisticas/frequencia-consumo/${usuarioId}`)
+        .then((resposta) => { return resposta.json() })
+        .then((data) => {
+            let mapa = {};
+
+            for (let i = 0; i < data.length; i++) {
+                let dia = new Date(data[i].dia).toISOString().split('T')[0];
+                mapa[dia] = data[i].total;
+            }
+
+            const container = document.getElementById("grafico-heatmap");
+            container.innerHTML = '';
+
+            let tooltip = document.createElement('div');
+            tooltip.classList.add("hm-tooltip");
+            document.body.appendChild(tooltip)
+
+            let hoje = new Date();
+            let inicio = new Date(hoje.getFullYear(), 0, 1);
+
+            for (let d = new Date(inicio); d <= hoje; d.setDate(d.getDate() + 1)) {
+                let chave = d.toISOString().split('T')[0];
+                let total = mapa[chave] || 0;
+
+                let quadrado = document.createElement('div');
+                quadrado.classList.add("quadrado")
+                quadrado.title = chave + ': ' + total + ' item(s)';
+
+                if (total === 0) {
+                    quadrado.style.background = '#1C1C22';
+                    quadrado.style.opacity = '1';
+                } else {
+                    quadrado.style.background = '#A26300';
+
+                    let opacidade = Math.min(0.25 + total * 0.2, 1);
+                    quadrado.style.opacity = String(opacidade)
+                }
+
+                let dataFormatada = new Date(chave + 'T00:00:00')
+                    .toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+
+                let textoTooltip = total === 0
+                    ? dataFormatada + ' · nenhuma atividade'
+                    : dataFormatada + ' · ' + total + (total === 1 ? ' item concluído' : ' itens concluídos');
+
+                quadrado.addEventListener('mouseenter', function(e) {
+                    tooltip.textContent = textoTooltip;
+                    tooltip.classList.add('visible');
+                });
+
+                quadrado.addEventListener('mousemove', function(e) {
+                    tooltip.style.left = (e.clientX + 12) + 'px';
+                    tooltip.style.top  = (e.clientY - 28) + 'px';
+                });
+
+                quadrado.addEventListener('mouseleave', function() {
+                    tooltip.classList.remove('visible');
+                });
+
+                container.appendChild(quadrado);
+            }
+        })
+        .catch(function(erro) {
+            console.error("Erro ao carregar heatmap:", erro);
+        });
+}   
 
 </script>
