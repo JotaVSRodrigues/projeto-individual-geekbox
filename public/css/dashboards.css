@@ -1,5 +1,23 @@
 /* pagina mural */
 
+h1 {
+  font-family: var(--fonte-titulo), sans-serif;
+  font-size: 2.8em;
+  font-weight: 200;
+  line-height: 1.0;
+  margin: 0;
+}
+
+h4 {
+  font-family: var(--fonte-secundaria), sans-serif;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+p {
+  line-height: 1;
+  margin: 0;
+}
 
 .navigation-buttons {
     display: flex;
@@ -46,7 +64,7 @@
   line-height: 1;
   margin: 0;
   padding: 0; 
-  gap: 12px;
+  gap: 8px;
 }
 
 
@@ -821,7 +839,7 @@ canvas {
 .dash-right-home {
   height: 100vh;
   width: 100%;
-  padding: 80px 40px;
+  padding: 60px 40px;
 }
 
 .header-container {
@@ -882,13 +900,11 @@ canvas {
 
 
 .dica-ia {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    justify-content: flex-start;
-    align-items: flex-end;
-
-
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
 .dica-ia img {
@@ -898,7 +914,7 @@ canvas {
 .dica-ia p {
     font-size: 1.3em;
     font-weight: 700;
-
+    margin-bottom: 4px;
 }
 
 .dica-ia span {
