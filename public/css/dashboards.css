@@ -858,7 +858,7 @@ canvas {
 /* HOME */
 
 .dash-right-home {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   padding: 60px 40px;
 }
