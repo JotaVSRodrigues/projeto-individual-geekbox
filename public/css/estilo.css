@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -110,7 +114,9 @@ body {
   height: var(--tamanho-banner);
 
   background-image: url('../assets/landing-page/banner-img.png');
+  background-position: center 80px;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .banner .container {
