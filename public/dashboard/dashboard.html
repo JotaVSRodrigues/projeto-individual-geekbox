@@ -368,4 +368,51 @@ function carregarLinhas() {
         });
 }
 
+function carregarDonut() {
+    fetch(`/estatisticas/horas-por-categoria/${usuarioId}`)
+        .then(function(resposta) { return resposta.json() })
+        .then(function(data) {
+            console.log("DATA DONUT: ", data);
+
+            let labels = []   
+            let valores = []
+            let cores = []
+
+            for (let i = 0; i < data.length; i++) {
+                labels.push(data[i].nome_categoria);
+                valores.push(data[i].total_horas);
+                cores.push(CORES[data[i].nome_categoria] || '#888');
+            }
+
+            new Chart (document.getElementById("grafico-donut"), {
+                type: 'doughnut',
+                data: { 
+                    labels: labels, 
+                    datasets: [{
+                        data: valores,
+                        backgroundColor: cores,
+                        borderColor: '#141418',
+                        borderWidth: 5,
+                        hoverOffset: 6  
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '50%',  
+                    plugins: {
+                        legend: { display: true, position: 'left' },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => ` ${ctx.parsed} horas`
+                            }
+                        }
+                    }
+                }
+            }) 
+        }).catch(function(erro) {
+            console.error("Erro ao carregar horas por categoria:", erro)
+    });
+}
+
 </script>
