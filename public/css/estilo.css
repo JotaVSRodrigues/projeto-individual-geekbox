@@ -51,6 +51,14 @@ body {
   --fonte-secundaria: 'DM Mono', sans-serif;
 }
 
+h1 {
+    font-family: var(--fonte-titulo), sans-serif;
+    font-size: 2.8em;
+    font-weight: 200;
+    line-height: 1.0;
+    margin: 0;
+}
+
 .container {
   display: flex;
   width: 95%;

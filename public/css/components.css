@@ -212,3 +212,7 @@
     height: 16px;
     width: auto;
 }
+
+#icon-image img {
+    height: 140px;
+}
