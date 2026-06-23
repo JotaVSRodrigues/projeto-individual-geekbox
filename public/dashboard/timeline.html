@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="./../css/components.css">
     <link rel="stylesheet" href="./../css/wishlist.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
-    <script src="../js/sessao.js"></script>
+    
+    <!-- ESTOU CHAMANDO SESSÃO NO FINAL DO BODY -->
+    <!-- <script src="../js/sessao.js"></script> -->
     <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -36,9 +38,9 @@
                     <h3>Aproveite o <span>GeekBox!</span></h3>
                     <h4>
                         <div class="date-info">
-                            <span>Segunda</span>
-                            <span>22 Jun 2026</span>
-                            <span>Semana 7</span>
+                            <span id="span-dia">Segunda</span>
+                            <span id="span-data">22 Jun 2026</span>
+                            <span id="span-semana">Semana 7</span>
                         </div>
                     </h4>
                 </div>
@@ -106,14 +108,14 @@
 
 
 
-
+    <script src="../js/sessao.js"></script>
 </body>
 
 </html>
 
 <script>
     
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();

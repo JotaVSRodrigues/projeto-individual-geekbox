@@ -269,6 +269,11 @@ h4 {
 
 /* HEATMAP */
 
+#grafico-heatmap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
 .subtitle-heatmap {
     display: flex;
@@ -308,6 +313,26 @@ h4 {
 .subtitle-heatmap span {
     font-family: var(--fonte-secundaria), var(--fonte-principal), sans-serif;
     color: var(--cinza-secundario);
+}
+
+.hm-tooltip {
+    position: fixed;
+    background-color: #1c1c22;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: var(--fonte-secundaria), monospace;
+    font-size: 11px;
+    color: #e8e6de;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 999;
+    white-space: nowrap;
+}
+
+.hm-tooltip.visible {
+    opacity: 1;
 }
 
 /* ================== */
@@ -558,8 +583,8 @@ h4 {
   width: 100%;
   height: 100vh;
   overflow: auto;
-
-  padding: 20px;
+  
+  padding: 30px 20px;
 }
 
 .area-parametros-alerta {

@@ -1,11 +1,9 @@
-const usuarioId = sessionStorage.getItem("ID_USUARIO");
-
 // sessão
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
-    var b_usuario = document.getElementById("b_usuario");
+    // var b_usuario = document.getElementById("b_usuario");
 
     if (email != null && nome != null) {
         // b_usuario.innerHTML = nome;
@@ -38,7 +36,8 @@ function finalizarAguardar(texto) {
 }
 
 function calcularHora() {
-    console.log(usuarioId, " usuario id")
+    console.log("calcularHora chamada")
+
     const horas = new Date();
     const horaAtual = horas.getHours();
   
@@ -52,7 +51,8 @@ function calcularHora() {
         mensagem = "Boa noite, ";
     }
     
-    document.getElementById("mensagem-hora").innerText = mensagem;
+    const elementoMsg = document.getElementById("mensagem-hora")
+    if (elementoMsg) elementoMsg.innerText = mensagem;
     
     var nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
     var elementoNome = document.getElementById("h1-span");
@@ -73,23 +73,36 @@ function calcularHora() {
     const dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]    
     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
     
-    
-    let welcomeSubtitle = `${dias[diaSemana-1]}, ${diaMes} ${meses[mesAtual]} ${anoAtual} `
 
     const welcomeSub = document.getElementById("welcome-subtitle")
-    welcomeSub.innerHTML = welcomeSubtitle
+    if (welcomeSub) welcomeSub.innerHTML = `${dias[diaSemana-1]}, ${diaMes} ${meses[mesAtual]} ${anoAtual}`
 
     const welcomeSubSemana = document.getElementById("h4-span")
+
+    const spanDia = document.getElementById("span-dia")
+    const spanData = document.getElementById("span-data")
+    const spanSemana = document.getElementById("span-semana")
     
-    fetch(`/usuarios/buscar-semanas/${usuarioId}`)
-    .then((resposta) => { return resposta.json() })
+    if (spanDia) spanDia.innerHTML = `${dias[diaSemana-1]}`
+    if (spanData) spanData.innerHTML = `${diaMes} ${meses[mesAtual]} ${anoAtual}`
+
+
+    const usuarioIdLogado = sessionStorage.getItem("ID_USUARIO");
+
+
+    fetch(`/usuarios/buscar-semanas/${usuarioIdLogado}`)
+    .then((resposta) => { 
+        console.log("resposta status:", resposta.status) 
+        return resposta.json() })
     .then((data) => {
-        
-        console.log(data, "dados do novo select")
+  
         let semana = data[0].semanas
         
-        welcomeSubSemana.innerHTML = `· Semana ${semana}`
+        if (welcomeSubSemana) welcomeSubSemana.innerHTML = `· Semana ${semana}`
+        if (spanSemana) spanSemana.innerHTML = `Semana ${semana}`
         }    
-    )
+    ).catch((error) => {
+        console.error("Error in fetch buscar-semanas: ", error)
+    })
  
 }

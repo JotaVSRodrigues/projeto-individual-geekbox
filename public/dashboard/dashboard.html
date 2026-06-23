@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="./../css/estilo.css" />
     <link rel="stylesheet" href="./../css/components.css">
 
-    <script src="../js/sessao.js"></script>
+    <!-- ESTOU CHAMANDO SESSÃO NO FINAL DO BODY -->
+    <!-- <script src="../js/sessao.js"></script> -->
     <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -30,7 +31,7 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body>
+<body onload="validarSessao()"">
 
     <div class="janela">
         <div class="header-left">
@@ -43,9 +44,9 @@
                     <h3>Aproveite o <span>GeekBox!</span></h3>
                     <h4>
                         <div class="date-info">
-                            <span>Segunda</span>
-                            <span>22 Jun 2026</span>
-                            <span>Semana 7</span>
+                            <span id="span-dia">Segunda</span>
+                            <span id="span-data">22 Jun 2026</span>
+                            <span id="span-semana">Semana 7</span>
                         </div>
                     </h4>
                 </div>
@@ -196,28 +197,26 @@
         </div>
     </div>
 
-
+    <script src="../js/sessao.js"></script>
 </body>
 
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
 
-    // const usuarioId = sessionStorage.getItem("ID_USUARIO");
-    console.log("usuarioId:", usuarioId);
+    const usuarioId = sessionStorage.getItem("ID_USUARIO");
+    // console.log("usuarioId:", usuarioId);
 
     if (!usuarioId) {
         console.error("usuarioId não encontrado!");
         window.location.href = "../html/login.html";
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-        console.log("usuarioId:", usuarioId);
-
+    window.addEventListener("load", () => {
         if (!usuarioId) {
-            window.location.href = "../html/login.html";
+            window.location.href = "../login.html";
             return;
         }
 
@@ -225,8 +224,8 @@
         carregarDonut();
         carregarLinhas();
         carregarMetas();
-        carregarHeatmap();
-    });
+        carregarHeatmap()
+    })
 
 
     function carregarKpis() {
