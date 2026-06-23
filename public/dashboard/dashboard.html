@@ -285,4 +285,87 @@ function carregarKpis() {
             console.error("Erro:", erro)
         });
 }
+
+const CORES = {
+    'jogo':   '#7f77dd',
+    'livro':  '#1d9e75',
+    'filme':  '#d85a30',
+    'serie':  '#378ADD',
+    'anime':  '#d4537e',
+    'manga':  '#CAA200',
+    'musica': '#639922'
+};
+
+const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+
+function carregarLinhas() {
+    fetch(`/estatisticas/consumo-mensal/${usuarioId}`)
+        .then(function(resposta) { 
+            return resposta.json(); })
+        .then(function(data) {
+            
+            console.log("DATA:", data);
+            console.log("TIPO:", typeof data);
+            
+            var series = {};
+
+            for (let i = 0; i < data.length; i++) {
+                let row = data[i];
+
+                if (!series[row.nome_categoria]) {
+                    series[row.nome_categoria] = new Array(12).fill(0);
+                }
+
+                series[row.nome_categoria][row.mes - 1] = row.total;    
+            }   
+
+            var datasets = [];
+            var categorias = Object.keys(series);
+
+
+            for (let i = 0; i < categorias.length; i++) {
+                var cat = categorias[i];
+            
+                datasets.push({
+                    label: cat,
+                    data: series[cat],
+                    borderColor: CORES[cat] || '#888',
+                    backgroundColor: (CORES[cat] || '#888') + '15',
+                    borderWidth: 2,
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                    tension: 0.4,
+                    fill: false 
+                });
+            }
+
+            new Chart(document.getElementById("grafico-linha"), {
+                type: 'line',
+                data: { labels: MESES, datasets: datasets
+                }, 
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: true }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255,255,255,0.04)' },
+                            ticks: { color: '#5c5a55'},
+                            beginAtZero: true
+                        },
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.04)' },
+                            ticks: { color: '#5c5a55', stepSize: 1 },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }).catch(function(erro) {
+            console.error("Erro ao carregar consumo anual:", erro)
+        });
+}
+
 </script>
