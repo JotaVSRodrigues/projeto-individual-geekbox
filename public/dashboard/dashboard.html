@@ -2,16 +2,19 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/logo/Vector.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>GeekBox | Dashboard</title>
 
-    
+
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
-    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="./../css/components.css">
+
+    <!-- ESTOU CHAMANDO SESSÃO NO FINAL DO BODY -->
+    <!-- <script src="../js/sessao.js"></script> -->
     <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -28,32 +31,34 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body>
+<body onload="validarSessao()"">
 
     <div class="janela">
         <div class="header-left">
-            <h1>AquaTech</h1>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <div class="title">
+                <div class="icon-img">
+                    <img src="../assets/icons/spider-man-icon.png" alt="">
+                </div>
+                <div class="hello">
+                    <h3>Aproveite o <span>GeekBox!</span></h3>
+                    <h4>
+                        <div class="date-info">
+                            <span id="span-dia">Segunda</span>
+                            <span id="span-data">22 Jun 2026</span>
+                            <span id="span-semana">Semana 7</span>
+                        </div>
+                    </h4>
+                </div>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários e Terrários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
+            <div class="navigation-buttons">
+                <ul>
+                    <li><a href="./home.html">Home</a></li>
+                    <li><a href="./timeline.html">Timeline</a></li>
+                    <li><a href="./wishlist.html">Wishlist</a></li>
+                    <li><a href="./dashboard.html">Dashboard</a></li>
+                </ul>
             </div>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -63,246 +68,491 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
+            <div class="content-kpis">
+                <div class="dash-card kpi" id="kpi-1">
+                    <div class="card-resume">
+                        <span>CONCLUÍDOS</span>
+                    </div>
+                    <div class="kpi-mensagem">
+                        <h3 class="kpi-main-data">
+                            <span id="kpi-concluidos"></span>
+                        </h3>
+                        <span>itens em 2026</span>
+                    </div>
+                </div>
+                <div class="dash-card kpi" id="kpi-2">
+                    <div class="card-resume">
+                        <span>HORAS TOTAIS</span>
+                    </div>
+                    <div class="kpi-mensagem">
+                        <h3 class="kpi-main-data">
+                            <span id="kpi-horas"></span>
+                        </h3>
+                        <span>horas de entretenimento</span>
+                    </div>
+                </div>
+                <div class="dash-card kpi" id="kpi-3">
+                    <div class="card-resume">
+                        <span>HORAS SEMANAIS</span>
+                    </div>
+                    <div class="kpi-mensagem">
+                        <h3 class="kpi-main-data">
+                            <span id="kpi-semanal"></span>
+                        </h3>
+                        <span>de média de consumo semanal</span>
+                    </div>
+                </div>
+                <div class="dash-card kpi" id="kpi-4">
+                    <div class="card-resume">
+                        <span>TAXA DE CONCLUSÃO</span>
+                    </div>
+                    <div class="kpi-mensagem">
+                        <h3 class="kpi-main-data">
+                            <span id="kpi-conclusao"></span>
+                        </h3>
+                        <span>de itens concluídos</span>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-            </div>
-            <div id="graficos">
+
+
+
+            <div class="content-graphics">
+
+                <div class="graphics">
+                    <div class="dash-card kpi" id="consumo-anual">
+                        <div>
+                            <h3 class="dash-main-data">
+                                Consumo anual
+                            </h3>
+                            <span class="subtitle-card">itens concluídos por mês · por categoria</span>
+                        </div>
+                        <div class="chart">
+                            <canvas id="grafico-linha">
+
+                            </canvas>
+                        </div>
+                    </div>
+
+                    <div class="dash-card kpi">
+                        <div>
+                            <h3 class="dash-main-data">
+                                Horas por categoria
+                            </h3>
+                            <span class="subtitle-card">distribuição em 2026</span>
+                        </div>
+                        <div class="chart">
+                            <canvas id="grafico-donut">
+
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graphics">
+
+                    <div class="dash-card kpi">
+                        <div>
+                            <h3 class="dash-main-data">
+                                Metas do ano
+                            </h3>
+                            <span class="subtitle-card">itens a serem consumidos no ano · por categoria</span>
+                        </div>
+                        <div class="chart">
+                            <canvas id="grafico-metas">
+
+                            </canvas>
+                        </div>
+
+                    </div>
+
+                    <div class="dash-card kpi">
+                        <div class="dash-card-header-freq">
+                            <h3 class="dash-main-data">
+                                Frequência de consumo
+                            </h3>
+                            <span class="subtitle-card">itens por semana</span>
+                            <div class="subtitle-heatmap">
+                                <span>Less</span>
+                                <div class="quadrado"></div>
+                                <div class="quadrado"></div>
+                                <div class="quadrado"></div>
+                                <div class="quadrado"></div>
+                                <div class="quadrado"></div>
+                                <span>More</span>
+                            </div>
+                        </div>
+                        <div class="chart">
+                            <div id="grafico-heatmap">
+                                <canvas>
+
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
+    <script src="../js/sessao.js"></script>
 </body>
 
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    const usuarioId = sessionStorage.getItem("ID_USUARIO");
+    // console.log("usuarioId:", usuarioId);
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
-
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
-        });
-
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
+    if (!usuarioId) {
+        console.error("usuarioId não encontrado!");
+        window.location.href = "../html/login.html";
     }
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
-
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-        for (i = 0; i < todosOsGraficos.length; i++) {
-            // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
-            }
+    window.addEventListener("load", () => {
+        if (!usuarioId) {
+            window.location.href = "../login.html";
+            return;
         }
 
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
+        carregarKpis();
+        carregarDonut();
+        carregarLinhas();
+        carregarMetas();
+        carregarHeatmap()
+    })
 
-        // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
-    }
 
-    // O gráfico é construído com três funções:
-    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+    function carregarKpis() {
+        // dps colocar catch em todos os fetchs ou try catch em tudo (mas acho que nao pode)
 
-    // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+        fetch(`/estatisticas/kpi-concluidos/${usuarioId}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (data) {
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+                console.log("DATA KPI 1:", data)
+                console.log("QTD CONCLUIDO:", data[0].quantidade_concluido)
 
-        alterarTitulo(idAquario)
+                document.getElementById("kpi-concluidos").innerHTML = data[0].quantidade_concluido;
+            }).catch(function (erro) {
+                console.error("Erro:", erro)
+            });
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+        fetch(`/estatisticas/kpi-horas-totais/${usuarioId}`)
+            .then(function (resposta) { return resposta.json(); })
+            .then(function (data) {
+                console.log("DATA KPI 2:", data)
 
-                    plotarGrafico(resposta, idAquario);
+                let num = data[0].total_horas
+                let numInteiro = Math.trunc(num);
+                let parteDecimal = ((num % 1).toFixed(2) * 60)
+                let horaFormatada = `${numInteiro}h${parteDecimal}min`
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                // console.log("QTD HORAS TOTAIS:", data[0].total_horas)
+
+                document.getElementById("kpi-horas").innerText = data[0].total_horas;
+            }).catch(function (erro) {
+                console.error("Erro:", erro)
+            });
+
+        fetch(`/estatisticas/kpi-horas-semanais/${usuarioId}`)
+            .then(function (resposta) { return resposta.json(); })
+            .then(function (data) {
+                console.log("DATA KPI 3:", data)
+                console.log("QTD HORAS SEMANAIS:", data[0].total_horas)
+
+                document.getElementById("kpi-semanal").innerText = data[0].horas_semanais;
+            }).catch(function (erro) {
+                console.error("Erro:", erro)
+            });
+
+        fetch(`/estatisticas/kpi-taxa-conclusao/${usuarioId}`)
+            .then(function (resposta) { return resposta.json(); })
+            .then(function (data) {
+                console.log("DATA KPI 4:", data)
+                console.log(`TAXA CONCLUSAO DO USUÁRIO ${usuarioId} ${data[0].taxa_concluido}`)
+
+                document.getElementById("kpi-conclusao").innerText = data[0].taxa_concluido;
+            }).catch(function (erro) {
+                console.error("Erro:", erro)
             });
     }
 
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    const CORES = {
+        'jogo': '#7f77dd',
+        'livro': '#1d9e75',
+        'filme': '#d85a30',
+        'serie': '#378ADD',
+        'anime': '#d4537e',
+        'manga': '#CAA200',
+        'musica': '#639922'
+    };
 
-        console.log('iniciando plotagem do gráfico...');
-
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
-        };
-
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
-
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.temperatura);
-        }
-
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-
-        // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
-        };
-
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
-            config
-        );
-
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
+    const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
 
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
+    function carregarLinhas() {
+        fetch(`/estatisticas/consumo-mensal/${usuarioId}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (data) {
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
+                console.log("DATA:", data);
+                console.log("TIPO:", typeof data);
 
+                var series = {};
 
+                for (let i = 0; i < data.length; i++) {
+                    let row = data[i];
 
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
-
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
-
-
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                        dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
+                    if (!series[row.nome_categoria]) {
+                        series[row.nome_categoria] = new Array(12).fill(0);
                     }
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                    series[row.nome_categoria][row.mes - 1] = row.total;
+                }
+
+                var datasets = [];
+                var categorias = Object.keys(series);
+
+
+                for (let i = 0; i < categorias.length; i++) {
+                    var cat = categorias[i];
+
+                    datasets.push({
+                        label: cat,
+                        data: series[cat],
+                        borderColor: CORES[cat] || '#888',
+                        backgroundColor: (CORES[cat] || '#888') + '15',
+                        borderWidth: 2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        tension: 0.4,
+                        fill: false
+                    });
+                }
+
+                new Chart(document.getElementById("grafico-linha"), {
+                    type: 'line',
+                    data: {
+                        labels: MESES, datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true }
+                        },
+                        scales: {
+                            x: {
+                                grid: { color: 'rgba(255,255,255,0.04)' },
+                                ticks: { color: '#5c5a55' },
+                                beginAtZero: true
+                            },
+                            y: {
+                                grid: { color: 'rgba(255,255,255,0.04)' },
+                                ticks: { color: '#5c5a55', stepSize: 1 },
+                                beginAtZero: true
+                            }
+                        }
+                    }
                 });
+            }).catch(function (erro) {
+                console.error("Erro ao carregar consumo anual:", erro)
+            });
+    }
+
+    function carregarDonut() {
+        fetch(`/estatisticas/horas-por-categoria/${usuarioId}`)
+            .then(function (resposta) { return resposta.json() })
+            .then(function (data) {
+                console.log("DATA DONUT: ", data);
+
+                let labels = []
+                let valores = []
+                let cores = []
+
+                for (let i = 0; i < data.length; i++) {
+                    labels.push(data[i].nome_categoria);
+                    valores.push(data[i].total_horas);
+                    cores.push(CORES[data[i].nome_categoria] || '#888');
+                }
+
+                new Chart(document.getElementById("grafico-donut"), {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: valores,
+                            backgroundColor: cores,
+                            borderColor: '#141418',
+                            borderWidth: 5,
+                            hoverOffset: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '50%',
+                        plugins: {
+                            legend: { display: true, position: 'left' },
+                            tooltip: {
+                                callbacks: {
+                                    label: ctx => ` ${ctx.parsed} horas`
+                                }
+                            }
+                        }
+                    }
+                })
+            }).catch(function (erro) {
+                console.error("Erro ao carregar horas por categoria:", erro)
+            });
+    }
+
+    function carregarMetas() {
+        fetch(`/estatisticas/metas-por-ano/${usuarioId}`)
+            .then(function (resposta) { return resposta.json() })
+            .then(function (data) {
+                console.log("DATA BARRA: ", data);
+
+                let labels = [];
+                let valoresMeta = [];
+                let valoresConcluido = [];
+                let cores = [];
+
+                for (let i = 0; i < data.length; i++) {
+                    labels.push(data[i].nome_categoria);
+                    valoresMeta.push(data[i].quantidade_meta);
+                    valoresConcluido.push(data[i].quantidade_concluido);
+                    cores.push(CORES[data[i].nome_categoria] || '#888');
+
+                    console.log(`${labels[i]} || ${valoresMeta[i]} || ${valoresConcluido[i]}`)
+                }
+
+                new Chart(document.getElementById("grafico-metas"), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Concluído',
+                                data: valoresConcluido,
+                                backgroundColor: cores,
+                                borderRadius: 12,
+                                barThickness: 8
+                            },
+                            {
+                                label: 'Meta',
+                                data: valoresMeta,
+                                backgroundColor: 'rgba(255,255,255,0.06)',
+                                borderRadius: 12,
+                                barThickness: 8
+                            }
+                        ]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: true },
+                            tooltip: { enabled: true }
+                        },
+                        scales: {
+                            x: {
+                                grid: { color: 'rgba(255,255,255,0.04)' },
+                                ticks: { color: '#5c5a55' }
+                            },
+                            y: {
+                                grid: { display: false },
+                                ticks: { color: '#5c5a55' },
+                                stacked: true
+                            }
+                        }
+                    }
+                })
+
+
+            }).catch(function (erro) {
+                console.error("Erro ao carregar horas por categoria:", erro)
+            });
+    }
+
+function carregarHeatmap() {
+    fetch(`/estatisticas/frequencia-consumo/${usuarioId}`)
+    .then((resposta) => { return resposta.json() })
+    .then((data) => {
+        let mapa = {};
+
+        for (let i = 0; i < data.length; i++) {
+            let dia = new Date(data[i].dia).toISOString().split('T')[0];
+            mapa[dia] = data[i].total;
+        }
+
+        const container = document.getElementById("grafico-heatmap");
+        container.innerHTML = '';
+
+        let tooltip = document.createElement('div');
+        tooltip.classList.add("hm-tooltip");
+        document.body.appendChild(tooltip)
+
+        let hoje = new Date();
+        let inicio = new Date(hoje.getFullYear(), 0, 1);
+
+        for (let d = new Date(inicio); d <= hoje; d.setDate(d.getDate() + 1)) {
+            let chave = d.toISOString().split('T')[0];
+            let total = mapa[chave] || 0;
+
+            let quadrado = document.createElement('div');
+            quadrado.classList.add("quadrado")
+            quadrado.title = chave + ': ' + total + ' item(s)';
+
+            if (total === 0) {
+                quadrado.style.background = '#1C1C22';
+                quadrado.style.opacity = '1';
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                quadrado.style.background = '#A26300';
+
+                let opacidade = Math.min(0.25 + total * 0.2, 1);
+                quadrado.style.opacity = String(opacidade)
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+
+            let dataFormatada = new Date(chave + 'T00:00:00')
+                .toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+
+            let textoTooltip = total === 0
+                ? dataFormatada + ' · nenhuma atividade'
+                : dataFormatada + ' · ' + total + (total === 1 ? ' item concluído' : ' itens concluídos');
+
+            quadrado.addEventListener('mouseenter', function (e) {
+                tooltip.textContent = textoTooltip;
+                tooltip.classList.add('visible');
             });
 
-    }
+            quadrado.addEventListener('mousemove', function (e) {
+                tooltip.style.left = (e.clientX + 12) + 'px';
+                tooltip.style.top = (e.clientY - 28) + 'px';
+            });
+
+            quadrado.addEventListener('mouseleave', function () {
+                tooltip.classList.remove('visible');
+            });
+
+            container.appendChild(quadrado);
+        }
+    })
+    .catch(function (erro) {
+        console.error("Erro ao carregar heatmap:", erro);
+    });
+}
+
 </script>

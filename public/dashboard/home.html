@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/logo/Vector.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekBox | Home</title>
+
+    
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="./../css/components.css">
+
+    <!-- ESTOU CHAMANDO SESSÃO NO FINAL DO BODY -->
+    <!-- <script src="../js/sessao.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<!-- <body onload="validarSessao(), listarInfosDeUm()"> -->
+<body onload="validarSessao()">
+
+    <div class="janela">
+
+
+        <div class="header-left">
+
+            <!-- <h1>AquaTech</h1> -->
+
+            <div class="title">
+                <!-- <div class="icon-img-left">
+                    <img src="../assets/logo/Vector01.png" alt="">
+                </div> -->
+                <div class="hello">
+                    <h3>geek<span id="box-span">Box</span></h3>
+                    <!-- <h4>
+                        <span>Segunda, 22 Jun 2026</span><span> · Semana 7</span>
+                    </h4> -->
+                </div>
+            </div>
+
+            <div class="navigation-buttons">
+                <ul>
+                    <li><a href="./home.html">Home</a></li>
+                    <li><a href="./timeline.html">Timeline</a></li>
+                    <li><a href="./wishlist.html">Wishlist</a></li>
+                    <li><a href="./dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+            
+        </div>
+        
+        
+        
+        <div class="dash-right-home">
+                <div class="header-container">
+
+                    <div class="header-home">
+                        <div id="icon-image">
+                            <img src="../assets/icons/spider-man-icon.png" alt="Foto de Perfil">
+                        </div>
+                        <div class="title">
+                            <h1><span id="mensagem-hora">Bom dia, </span><span id="h1-span">João!</span></h1>
+
+                            <h4>
+                                <span id="welcome-subtitle">Segunda, 22 Jun 2026</span>
+                                <span id="h4-span"> · Semana 7</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-container-home">
+                    <div class="sugestao-ia">
+                        <div class="dica-ia anim-scale-in anim-d1">
+                            <img src="../assets/icons/robot.png" alt="">
+                            <p><span>Dica do dia do NerdyIA</span></p>
+                        </div>
+                    </div>
+                    <blockquote class="citacao-barra anim-fade-in anim-d2">
+                        <p id="resposta-bobia"></p>
+                    </blockquote>
+
+                    <div class="home-items">
+                        <div class="em-progresso-title anim-fade-up anim-d2">
+                            <h4>EM PROGRESSO</h4>
+                        </div>
+                        <div class="progresso-items anim-fade-up anim-d3"></div>
+
+                        <div class="em-progresso-title anim-fade-up anim-d2">
+                            <h4>RECENTEMENTE CONCLUÍDOS</h4>
+                        </div>
+                        <div class="concluido-items anim-fade-up anim-d3"></div>
+                    </div>
+                </div>
+
+            
+        </div>
+
+
+    </div>
+
+    <script src="../js/sessao.js"></script>
+</body>
+
+</html>
+
+<script>
+    
+    function listarInfosDeUm() {
+        console.log("Criar função de trazer informações de post escolhido");
+    }
+
+    function editar() {
+        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/mural.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+</script>

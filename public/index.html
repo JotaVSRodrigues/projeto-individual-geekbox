@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Página Inicial</title>
+    <title>GeekBox | Página Inicial</title>
 
     <script src="./js/sessao.js"></script>
 
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="stylesheet" href="./css/components.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="icon" href="../assets/logo/Vector.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -20,12 +20,12 @@
     <div class="header">
       <div class="container">
         <div class="logo-img">
-          <img src="../public/assets/logo/logo-geekbox.png" alt="">
+          <img src="./assets/logo/logo-geekbox.png" alt="">
         </div>
         <ul class="navbar">
-          <li><a href="#hero-section">home</a></li>    
-          <li><a href="#second-section">sobre o projeto</a></li>    
-          <li><a href="#third-section">dashboard</a></li>    
+          <li><a href="#first">home</a></li>    
+          <li><a href="#second">sobre o projeto</a></li>    
+          <li><a href="#third">dashboard</a></li>    
         </ul>
         <a href="./login.html">
           <button class="btn-login">Login</button>
@@ -34,17 +34,17 @@
     </div>
   
 
-    <div>
+    <div id="first">
       <div class="banner">
         <div class="container">
-          <p>Tudo o que você consome em um <span>único lugar.</span></p>
+          <p>Tudo o que você consome em um <span class="italic-span">único lugar.</span></p>
         </div>
       </div>
     </div>
   
 
 <!-- SEGUNDA SECTION -->
-    <div class="social">
+    <div class="social" id="second">
       <div class="container">
         <div class="content">
           <div class="container-text">
@@ -75,9 +75,9 @@
     </div>
 
 <!-- TERCEIRA SECTION -->
-    <div class="social">
+    <div class="social" id="third">
       <div class="container">
-        <div class="content">
+        <div class="content-second">
           <div class="content-img">
             <img src="./assets/landing-page/Group 20.png" alt="">
           </div>
@@ -106,15 +106,37 @@
       </div>
     </div>
 
-    <div>
+    <div class="social">
+      <div class="container social-dashboard">
+         <h2 class="dashboard-title">
+            <p>Sua <span class="italic-span">Dashboard!</span></p>  
+          </h2>
+          <img src="/assets/images/landing-page/dashboard-print.png" alt="Dashboard" class="dashboard-img">
+      </div>
+    </div>
+
+    <div class="social cta">
+      <div class="container">
+        <div class="card card-cta">
+          <h2>Comece a usar <span>HOJE!</span></h2>
+          <p>Nunca mais perca de vista o que te entretem no dia a dia.</p>
+          <button class="btn-login">Acessar GeekBox</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div>
       <div class="container">
 
       </div>
-    </div>
+    </div> -->
   
     <div class="footer">
+      <div>
+        <span class="line-footer"></span>
+      </div>
       <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
+        <h4>Copyright© 2026 • GeekBox</h4>
       </div>
     </div>
   </body>

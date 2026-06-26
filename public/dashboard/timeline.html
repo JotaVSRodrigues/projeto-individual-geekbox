@@ -2,15 +2,19 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/logo/Vector.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Avisos</title>
+    <title>GeekBox | Timeline</title>
 
     <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/components.css">
+    <link rel="stylesheet" href="./../css/wishlist.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
-    <script src="../js/sessao.js"></script>
+    
+    <!-- ESTOU CHAMANDO SESSÃO NO FINAL DO BODY -->
+    <!-- <script src="../js/sessao.js"></script> -->
     <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,33 +23,36 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<body onload="validarSessao(), atualizarFeed()">
 
     <div class="janela">
 
 
         <div class="header-left">
 
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <div class="title">
+                <div class="icon-img">
+                    <img src="../assets/icons/spider-man-icon.png" alt="">
+                </div>
+                <div class="hello">
+                    <h3>Aproveite o <span>GeekBox!</span></h3>
+                    <h4>
+                        <div class="date-info">
+                            <span id="span-dia">Segunda</span>
+                            <span id="span-data">22 Jun 2026</span>
+                            <span id="span-semana">Semana 7</span>
+                        </div>
+                    </h4>
+                </div>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Aquários e Terrários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Mural de Avisos</h3>
+            <div class="navigation-buttons">
+                <ul>
+                    <li><a href="./home.html">Home</a></li>
+                    <li><a href="./timeline.html">Timeline</a></li>
+                    <li><a href="./wishlist.html">Wishlist</a></li>
+                    <li><a href="./dashboard.html">Dashboard</a></li>
+                </ul>
             </div>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -55,52 +62,56 @@
         </div>
 
         <div class="dash-right">
-
-
-            <div class="avisos">
-                <div id="alerta">
-                </div>
-                <div class="container">
-                    <h1>Publicar um aviso</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <br>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
+            
+            <div class="container wishlist-container">
+                <div class="content-container">
+                    <div class="content-wishlist anim-scale-in anim-d1">
+                        
+                        <div class="titulo">
+                            <h2>Veja sua linha do tempo!</h2>
+                        </div>
+                        <div class="items-container">
+                            <div class="card-selected anim-fade-up anim-d2 dash-card">
+                                <div class="content-selected" id="div-content-selected">
+                                    <div class="no-content">
+                                        <p>Selecione algum item</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="items-list anim-scale-in anim-d1">
+                                <div class="buttons-items">
+                                    <div class="search-bar anim-fade-up anim-d3">
+                                        <input id="ipt_search_bar" type="text" placeholder="O Poderoso Chefão...">
+                                    </div>
+                                    <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                        <button onclick="criarItemCard(modalFiltro)" class="btn-cadastro">
+                                            <div class="funnel-div"><img src="../assets/icons/funnel-icon.png" alt=""> Filtrar</div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="field-list-container">
+                                    <div id="field-list" class="list">
+                            
+                                    </div>
+                                </div>
+                        </div>
                         </div>
                     </div>
-                </div>
+                </div>    
             </div>
         </div>
     </div>
 
 
 
-
+    <script src="../js/sessao.js"></script>
 </body>
 
 </html>
 
 <script>
     
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
