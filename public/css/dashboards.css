@@ -8,6 +8,11 @@ h1 {
   margin: 0;
 }
 
+h2 {
+  margin: 12px 0 0 0;
+  line-height: 1;
+}
+
 h4 {
   font-family: var(--fonte-secundaria), sans-serif;
   font-weight: 500;
@@ -352,11 +357,34 @@ h4 {
 
 .content-wishlist {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     
     height: 100%;
     width: 100%;
-    gap: 50px;
+    gap: 30px;
+}
+
+.content-wishlist h2 {
+  font-family: var(--fonte-titulo);
+  font-weight: 200;
+  font-size: 2.4em;
+  font-style: italic
+}
+
+.content-wishlist h2::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--cinza-secundario);
+}
+
+.items-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+  height: 100%;
+  width: 100%;
 }
 
 .card-selected {
