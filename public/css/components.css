@@ -155,6 +155,29 @@
 }
 
 
+.elipse-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px;
+}
+
+.elipse-btn span {
+    width: 4px;
+    height: 4px;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+}
+
+.close-modal button {
+    background: transparent;
+    border: none;
+    transition: 0.3s ease-in-out;
+}   
+
 .search-bar input {
     background-image: url('../assets/images/icons/search-icon.png');
     background-repeat: no-repeat;
@@ -216,4 +239,99 @@
 
 #icon-image img {
     height: 140px;
+}
+
+
+.label-box input {
+    background-color: transparent;
+    padding: 8px 10px;
+
+    width: 100%;
+    margin-bottom: 14px;
+
+    border: 2px solid #e6e6e6;
+    border-radius: 6px;
+
+    color: #e6e6e6;
+}
+
+.label-box select {
+    background-color: transparent;
+    padding: 8px 10px;
+
+    width: 100%;
+    margin-bottom: 14px;
+
+    border: 2px solid #e6e6e6;
+    border-radius: 6px;
+
+    color: #e6e6e6;
+}
+
+::placeholder {
+    color: #707070;
+    font-family: 'Syne', sans-serif;
+}
+
+.responsive-labels {
+    display: flex;
+    flex-direction: row;
+
+    gap: 20px;
+}
+
+select {
+    min-inline-size: 14ch;
+    justify-content: space-between;
+}
+
+select, select::picker(select) {
+    font-size: 1.1em;
+    appearance: base-select;
+    padding: 1rem;
+    border: 0.5px solid #4D4D4D;
+    border-radius: 1rem;
+    background-color: #222;
+    line-height: 1.6;
+    color: #e6e6e6;
+}
+
+
+select::picker-icon {
+    color: #4D4D4D;
+    transition: transform 0.4s ease;
+    margin-right: 8px;
+    border-radius: 100px;
+}
+
+select:open::picker-icon {
+    transform: rotate(90deg);
+}
+
+
+.btn-filtro-div {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.avaliacao {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.star-icon {
+    list-style: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #A26300;
+}
+
+.star-icon::before {
+    content: "\2606"; 
+}
+
+.star-icon.ativo::before {
+    content: "\2605"; 
 }
