@@ -6,13 +6,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeekBox | Wishlist</title>
+    <title>GeekBox | Timeline</title>
 
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/components.css">
     <link rel="stylesheet" href="./../css/wishlist.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
-    
+    <link rel="stylesheet" href="./../css/modal.css">
+
     <!-- ESTOU CHAMANDO SESSÃO NO FINAL DO BODY -->
     <!-- <script src="../js/sessao.js"></script> -->
     <script src="./../js/alerta.js"></script>
@@ -62,46 +63,237 @@
         </div>
 
         <div class="dash-right">
+                    <div class="modal-container-meta">
+            <div class="modal">
+                <div class="close-modal">
+                    <button onclick="fecharItemCard(modalMeta)">
+                        <img src="../assets/images/icons/x-icon.png" alt="">
+                    </button>
+                </div>
+                <div class="modal-header-meta">
+                    <div>
+                        <h2>
+                            <span>Cadastre uma</span>
+                            <span>nova <span id="highlight-span">meta.</span></span>
+                        </h2>
+                    </div>
+                    <div>
+                        <p>
+                            <span>Defina uma quantidade, categoria e</span>
+                            <span>data de conclusão. E pronto!</span>
+                            <span>Você terá uma meta de consumo.</span>
+                            <span>Tudo organizado e monitorado <span id="highlight-span">num só lugar.</span></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="label-box" id="label-box-modal">
+                    <div class="responsive-labels">
+                        
+                        <input id="ipt_quantidade" type="number" name="horas" min="0" placeholder="Quantidade">
+                        <select name="Categoria" id="select_categoria_meta" required="required">
+                            <option value="" disabled selected hidden >Categoria</option>
+                            <option value="1">Jogo</option>
+                            <option value="2">Livro</option>
+                            <option value="3">Filme</option>
+                            <option value="4">Série</option>
+                            <option value="5">Anime</option>
+                            <option value="6">Mangá</option>
+                            <option value="7">Música</option>
+                        </select>
+                    </div>
+                    <div class="responsive-labels">
+                        <label for="ano">Selecione o ano da meta:</label>
+                        <input id="ipt_ano_meta" type="number" placeholder="Ano de conclusão da meta" min="2026" max="2099" step="1" value="2026">
+                    </div>
+                </div>
+
+                <div class="btn-cadastro-div">
+                    <button onclick="registerMeta()" class="btn-cadastro">Cadastrar Meta</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-container-item">
+            <div class="modal">
+                <div class="close-modal">
+                    <button onclick="fecharItemCard(modalItem)">
+                        <img src="../assets/images/icons/x-icon.png" alt="">
+                    </button>
+                </div>
+                <div class="modal-header">
+                    <div>
+                        <h2>
+                            <span>Cadastre um</span>
+                            <span>novo <span id="highlight-span">item.</span></span>
+                        </h2>
+                    </div>
+                    <div>
+                        <p>
+                            <span>Jogos, livros, filmes, séries,</span>
+                            <span>animes, mangás e músicas</span>
+                            <span>— rastreados, organizados</span>
+                            <span>e visualizados <span id="highlight-span">num só lugar.</span></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="label-box" id="label-box-modal">
+                    <div class="responsive-labels">
+                        <input id="ipt_titulo" type="text" placeholder="Título. Ex: Senhor dos Anéis... ">
+
+                        <select name="Categoria" id="select_categoria" required="required">
+                            <option value="" disabled selected hidden >Categoria</option>
+                            <option value="1">Jogo</option>
+                            <option value="2">Livro</option>
+                            <option value="3">Filme</option>
+                            <option value="4">Série</option>
+                            <option value="5">Anime</option>
+                            <option value="6">Mangá</option>
+                            <option value="7">Música</option>
+                        </select>
+                    </div>
+                    <div class="responsive-labels">
+                        <select name="Genero" id="select_genero" required="required">
+                            <option value="" disabled selected hidden >Gênero</option>
+
+                        </select>
+
+                        <select name="Status" id="select_status" required="required">
+                            <option value="" disabled selected hidden >Status</option>
+                            <option value="wishlist">Wishlist</option>
+                            <option value="em_progresso">Em Progresso</option>
+                            <option value="concluido">Concluído</option>
+                            <option value="pausado">Pausado</option>
+                            <option value="abandonado">Abandonado</option>
+                        </select>
+
+                        <label>Horas:</label>
+                        <input id="ipt_horas" type="number" name="horas" min="0" max="99" placeholder="00">
+                        <label>Minutos:</label>
+                        <input id="ipt_minutos" type="number" name="minutos" min="0" max="59" placeholder="00">
+
+                    </div>
+                    <div class="responsive-labels">
+                        <input id="ipt_url_imagem" type="text" placeholder="Url da imagem de capa">
+                    </div>
+                </div>
+
+                <div class="btn-cadastro-div">
+                    <button onclick="registerItem()" class="btn-cadastro">Cadastrar item</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-container-filtro">
+            <div class="modal">
+                <div class="close-modal">
+                    <button onclick="fecharItemCard(modalFiltro)">
+                        <img src="../assets/images/icons/x-icon.png" alt="">
+                    </button>
+                </div>
+                <div class="modal-header">
+                    <div>
+                        <h2>
+                            <span>Filtre seus </span>
+                            <span id="highlight-span">itens.</span>
+                        </h2>
+                    </div>
+                    <div>
+                        <p>
+                            <span>Jogos, livros, filmes, séries,</span>
+                            <span>animes, mangás e músicas</span>
+                            <span>— rastreados, organizados</span>
+                            <span>e visualizados <span id="highlight-span">num só lugar.</span></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="label-box" id="label-box-modal">
+                    
+                    <form id="filter-form">
+                        <div class="responsive-labels">
+                            <select name="Categoria" id="select_categoria_filtro">
+                                <option value="" disabled selected hidden >Categoria</option>
+                                <option value="jogo">Jogo</option>
+                                <option value="livro">Livro</option>
+                                <option value="filme">Filme</option>
+                                <option value="serie">Série</option>
+                                <option value="anime">Anime</option>
+                                <option value="manga">Mangá</option>
+                                <option value="musica">Música</option>
+                            </select>
+                            <select name="Status" id="select_status_filtro">
+                                <option value="" disabled selected hidden >Status</option>
+                                <option value="wishlist">Wishlist</option>
+                                <option value="em_progresso">Em Progresso</option>
+                                <option value="concluido">Concluído</option>
+                                <option value="pausado">Pausado</option>
+                                <option value="abandonado">Abandonado</option>
+                            </select>
+                        </div>
+                        <div class="btn-cadastro-div">
+                            <div class="btn-filtro-div">
+                                <button type="submit" id="save-filter" class="btn-cadastro">Salvar Filtro</button>
+                                <button type="button" id="clean-filter" class="btn-cadastro" onclick="limparFiltro()">Limpar Filtro</button>
+                            </div>
+                        </div>
+                    </form>
+                 
+        
+                </div>
+
+            </div>
+        </div>
+
+
             <div class="container wishlist-container">
                 <div class="content-container">
                     <div class="content-wishlist anim-scale-in anim-d1">
-                        
-                        <div class="card-selected anim-fade-up anim-d2 dash-card">
-                            <div class="content-selected" id="div-content-selected">
-                                <div class="no-content">
-                                    <p>Selecione algum item</p>
-                                </div>
-                            </div>
+
+                        <div class="titulo">
+                            <h2>Veja sua lista de desejos!</h2>
                         </div>
-
-                        <div class="items-list anim-scale-in anim-d1">
-                            <div class="buttons-items">
-                                <div class="search-bar anim-fade-up anim-d3">
-                                    <input id="ipt_search_bar" type="text" placeholder="O Poderoso Chefão...">                                 
+                        <div class="items-container">
+                            <div class="card-selected anim-fade-up anim-d2 dash-card">
+                                <div class="content-selected" id="div-content-selected">
+                                    <div class="no-content">
+                                        <p>Selecione algum item</p>
+                                    </div>
                                 </div>
-                                <div class="btn-cadastro-div anim-fade-up anim-d3">
-                                    <button onclick="criarItemCard(modalFiltro)" class="btn-cadastro">
-                                        <div class="funnel-div"><img src="../assets/icons/funnel-icon.png" alt=""> Filtrar</div>
-                                    </button>
-                                </div>
-                                <div class="btn-cadastro-div anim-fade-up anim-d3">
-                                    <button onclick="criarItemCard(modalMeta)" class="btn-cadastro btn-wishlist">+ Nova meta</button>
-                                </div>
-
-                                <div class="btn-cadastro-div anim-fade-up anim-d3">
-                                    <button onclick="criarItemCard(modalItem)" class="btn-cadastro  btn-wishlist">+ Novo
-                                        item</button>
-                                </div>
-
                             </div>
-                            <div class="field-list-container">
-                                <div id="field-list" class="list">
-                                    
+                            <div class="items-list anim-scale-in anim-d1">
+                                <div class="buttons-items">
+                                    <div class="search-bar anim-fade-up anim-d3">
+                                        <input id="ipt_search_bar" type="text" placeholder="O Poderoso Chefão...">
+                                    </div>
+                                    <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                        <button onclick="criarItemCard(modalFiltro)" class="btn-cadastro">
+                                            <div class="funnel-div"><img src="../assets/icons/funnel-icon.png" alt="">
+                                                Filtrar</div>
+                                        </button>
+                                    </div>
+                                    <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                        <button onclick="criarItemCard(modalMeta)" class="btn-cadastro btn-wishlist">+
+                                            Nova meta</button>
+                                    </div>
+
+                                    <div class="btn-cadastro-div anim-fade-up anim-d3">
+                                        <button onclick="criarItemCard(modalItem)" class="btn-cadastro  btn-wishlist">+
+                                            Novo
+                                            item</button>
+                                    </div>
+
+                                </div>
+                                <div class="field-list-container">
+                                    <div id="field-list" class="list">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
@@ -114,152 +306,363 @@
 </html>
 
 <script>
+
+let qtdItems = 0;
+const fieldList = document.getElementById("field-list");
+const modalItem = document.querySelector('.modal-container-item');
+const modalMeta = document.querySelector('.modal-container-meta');
+const modalFiltro = document.querySelector('.modal-container-filtro')
+const divCard = document.getElementById("div-content-selected");
+const form = document.getElementById("filter-form");
+
+let allItens = []
+let termoBusca = ""
+
+let itemAtual = null
+let genres = [];
+
+
+const inputBusca = document.getElementById("ipt_search_bar")
+
+if (inputBusca) {
+    inputBusca.addEventListener('input', (event) => {
+        termoBusca = inputBusca.value.toLowerCase().trim()
+        console.log(termoBusca)
+        const categoria = document.getElementById('select_categoria_filtro').value
+        const status = document.getElementById('select_status_filtro').value
+        aplicarFiltros(categoria, status)
+    })
+}
+
+async function carregarGeneros() {
+    const resposta = await fetch(`/itens/buscar-generos`);
+    genres = await resposta.json();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // updateDateSubtitle();
+    carregarGeneros();
+    carregarItens();
+    renderizarItens();
+
+});
+
+const categorySelect = document.getElementById("select_categoria");
+const genreSelect = document.getElementById("select_genero");
+
+categorySelect.addEventListener("change", () => {
+    const selectedCategory = categorySelect.value;
+
+    console.log("Estou carregando!")
+    genreSelect.innerHTML = '<option value="" disabled selected hidden>Gênero</option>';
+
+    genres
+        .filter(genre => genre.id_categoria == selectedCategory)
+        .forEach(genre => {
+            const option = document.createElement("option");
+            option.value = genre.id;
+            option.textContent = genre.nome;
+            genreSelect.appendChild(option);
+        });
+});
+
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const categoria = document.getElementById('select_categoria_filtro').value;
+    const status    = document.getElementById('select_status_filtro').value;
+    aplicarFiltros(categoria, status);
+});
+
+function calculateMonth() {
+    const date = new Date();
+    const month = date.getMonth();
+
+    const months = [
+        "JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL",
+        "MAIO", "JUNHO", "JULHO", "AGOSTO",
+        "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
+    ];
+
+    return months[month];
+}
+
+// resolver bug dps
+// function updateDateSubtitle() {
+//     const date = new Date();
+//     const month = calculateMonth();
+//     const year = date.getFullYear();
+
+//     if (document.getElementById("subtitle" + month + year) != null) {
+//         return;
+//     }
+
+//     const newSubtitle = document.createElement("div");
+//     newSubtitle.setAttribute("id", "subtitle" + month + year);
+//     newSubtitle.innerHTML = `
+//         <div class="month-date">
+//             <span>${month} ${year}</span>
+//         </div>
+//     `;
+
+//     fieldList.appendChild(newSubtitle);
+// }
+
+function criarItemCard(modal) {
+    modal.classList.remove("closing");
+    modal.classList.add("active");
+}
+
+function fecharItemCard(modal) {
+    modal.classList.add("closing");
+
+    setTimeout(() => {
+        modal.classList.remove("active");
+        modal.classList.remove("closing");
+    }, 600);
+}
+
+function carregarItens() {
+    const usuarioId = sessionStorage.getItem("ID_USUARIO");
+
     
-    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    fetch(`/itens/buscar-wishlist/${usuarioId}`)
+    .then((resposta) => { return resposta.json() })
+    .then((data) => {
+       
+        allItens = data
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
-    }
+        console.log(data);
+        // updateDateSubtitle();
+        renderizarItens(data);
+    })
+}
 
-    function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
+function aplicarFiltros(categoria, status) {
 
-        var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
+    const filtrados = allItens.filter((item) => {
+        const passCategoria = !categoria || categoria === '' || item.nome_categoria === categoria
+        const passStatus = !status || status === '' || item.status === status
+        const passBusca = termoBusca === '' || (item.titulo && item.titulo.toLowerCase().includes(termoBusca));
+
+        return passCategoria && passStatus && passBusca
+    });
+
+    renderizarItens(filtrados)
+}
+
+function limparFiltro () {
+    document.getElementById("select_categoria_filtro").value = ''
+    document.getElementById("select_status_filtro").value = ''
+    termoBusca = ''
+
+    const inputBusca = document.getElementById('ipt_search_bar').value = ''
+    
+    setTimeout(() => {
+        fecharItemCard(modalFiltro)
+    }, "1000");
+    
+
+    renderizarItens(allItens)
+}
+
+function renderizarItens(data) {
+
+
+    fieldList.innerHTML = ''
+    qtdItems = 0
+    // updateDateSubtitle()
+
+    data.forEach((item) => {
+        const newItem = document.createElement("div");
+        newItem.setAttribute("id", "new_item" + qtdItems);
+        newItem.classList.add("item-anim");
+    
+        const firstItem = fieldList.querySelector(".item");
+    
+        if (firstItem) {
+            fieldList.insertBefore(newItem, firstItem.parentNode);
+        } else {
+            fieldList.appendChild(newItem);
         }
 
-        fetch(`/avisos/publicar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
+        let num = item.horas;
+        let numInteiro = Math.trunc(num);
+        let parteDecimal = ((num % 1).toFixed(2) * 60)
+        let horaFormatada = `${numInteiro}h${parteDecimal}min`
+    
+        let statusFormatado = item.status.toUpperCase().replace("_", " ")
+        let generoFormatado = item.nome_genero.toLowerCase()
+
+
+        const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+
+        document.getElementById("new_item" + qtdItems).innerHTML = `
+            <div class="item" onclick="getItem(${item.id})">
+                <div class="information">
+                    <h4 class="item-header">${item.titulo}</h4>
+                    <div class="information-subtitle">
+                        <span id="span-concluido">${statusFormatado}</span>
+                        <span>· ${horaFormatada} ·</span>
+                        <span> ${item.nome_categoria} ·</span>
+                        <span> ${generoFormatado} </span>
+                    </div>
+                </div>
+                <div class="right-information">
+                    <span class="right-information-date">${item.dia_criacao} de ${meses[item.mes_criacao - 1]}</span>
+                    <button class="elipse-btn" onclick="openMiniModal(${item.id}, this)">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        requestAnimationFrame(() => {
+            newItem.classList.add("show");
+        });
+
+        qtdItems++; 
+    })
+}
+
+function getItem(itemId) {
+    divCard.innerHTML = ""
+    console.log("item clicado: ", itemId)
+
+    fetch(`/itens/buscar-item/${itemId}`)
+    .then((resposta) => { return resposta.json() })
+    .then((data) => {
+        console.log("FETCH DO GETITEM() FUNCIONANDO. DADOS=> ", data)
+        
+        itemAtual = data[0]
+        let num = data[0].horas;
+        let numInteiro = Math.trunc(num);
+        let parteDecimal = ((num % 1).toFixed(2) * 60)
+        let horaFormatada = `${numInteiro}h${parteDecimal}min`
+    
+        let statusFormatado = data[0].status.toUpperCase().replace("_", " ")
+        let generoFormatado = data[0].nome_genero.toLowerCase()
+
+
+        const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+        
+        let campoResenha = data[0].resenha == null ?  
+            `<div class="select-card-resenha anim-fade-up anim-d3"> 
+                <h3>Escreva sua resenha aqui.</h3>
+                <div class="wishlist-content-text">
+                    <textarea name="" id="textarea_resenha"></textarea>
+
+                    <div class="btn-cadastro-div">
+                        <button onclick="updateResenha(${itemId})" class="btn-cadastro">Salvar Resenha</button>
+                    </div>
+                </div>
+            </div>`
+            :
+            `<div class="select-card-resenha anim-fade-up anim-d3"> 
+                <h3>Sua resenha.</h3>
+                <div class="wishlist-content-text">
+                    <p>${data[0].resenha}
+                    
+                    </p>
+                    <div class="btn-editar-resenha" onclick="editarResenha(${itemId})">
+                        <img class="edit-resenha-btn" src="../assets/images/icons/Edit - 192x192.png" alt="">
+                        <span>Editar resenha</span>
+                    </div>
+
+                </div>
+            </div>`;
+
+
+        const statusOptions = [
+            {
+                'status': 'wishlist',
+                'statusFormatado': 'Wishlist'
             },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
+            {
+                'status': 'em_progresso',
+                'statusFormatado': 'Em Progresso'
+            },
+            {
+                'status': 'concluido',
+                'statusFormatado': 'Concluído'
+            },
+            {
+                'status': 'pausado',
+                'statusFormatado': 'Pausado'
+            },
+            {
+                'status': 'abandonado',
+                'statusFormatado': 'Abandonado'
+            },
+        ]
+            
+        const statusOptions2 = ['wishlist', 'em_progresso', 'concluido', 'pausado', 'abandonado'];
+        let statusNow = {}
 
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        statusOptions.forEach((element) => {
+            if (element.status === data[0].status) {
+                statusNow = element
+                statusOptions.splice(statusOptions.indexOf(element), 1)
             }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+        })
 
-        return false;
+        let campoStatus = `
+        <div class="status-row">
+            <span>Status: </span>
+            <div class="div-card-select">    
+                <select name="" id="select_status_item" onchange="updateStatus(${itemId})">
+                    <option value="${statusNow.status}">${statusNow.statusFormatado}</option>
+                    <option value="${statusOptions[0].status}">${statusOptions[0].statusFormatado}</option>
+                    <option value="${statusOptions[1].status}">${statusOptions[1].statusFormatado}</option>
+                    <option value="${statusOptions[2].status}">${statusOptions[2].statusFormatado}</option>
+                    <option value="${statusOptions[3].status}">${statusOptions[3].statusFormatado}</option>
+                </select>
+            </div>
+        </div>
+        `
 
-    }
+        divCard.innerHTML =
+            `
+            <div class="content-selected-header anim-scale-in anim-d1">
+                <div class="selected-image anim-fade-up anim-d3">
+                    <img id="poster-image-wishlist" src="${data[0].url_imagem}" alt="">
+                </div>
+                
+                <div class="selected-card-information anim-fade-up anim-d3">
+                    <h2>${data[0].titulo}</h2>
+                    <div class="card-information">
+                        <span>Categoria: ${data[0].nome_categoria}</span>
+                        <span>Gênero: ${data[0].nome_genero}</span>
+                        <span>Duração: ${horaFormatada}</span>
+                        ${campoStatus}
+                        <span>Cadastro: ${data[0].dia_criacao} de ${meses[data[0].mes_criacao -1]}, ${data[0].ano_criacao}</span>
+                        <br>
+                        <div class="status-row">
+                            <span>Nota: </span>
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
+                            <ul class="avaliacao">
+                                <li class="star-icon" data-avaliacao="1"></li>
+                                <li class="star-icon" data-avaliacao="2"></li>
+                                <li class="star-icon" data-avaliacao="3"></li>
+                                <li class="star-icon" data-avaliacao="4"></li>
+                                <li class="star-icon" data-avaliacao="5"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    }
+            ${campoResenha}
+            `;
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
-
-    function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
-                }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
-
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
-
-
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
-
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
-
-                        divButtons.className = "div-buttons"
-
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
-                    }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
+            aplicarClassificacaoSalva(data[0].classificacao);
+            document.querySelector('.avaliacao').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('star-icon')) return;
+                changeClassificacao(e, itemId);
+            });
+    })
+}
 
 </script>

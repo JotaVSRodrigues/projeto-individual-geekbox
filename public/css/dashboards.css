@@ -501,6 +501,30 @@ h4 {
     overflow-y: auto;
 }
 
+/* MODAL WISHLIST */
+
+
+.modal-container-meta {
+    width: 100vw;
+    position: fixed;
+    top: 30vh;
+    display: none;
+    z-index: 999;
+    justify-content: center;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    padding: 46px;
+    border-radius: 10px;
+    width: 50%;
+    color: rgb(255, 255, 255);
+    border: 0.5px solid #4D4D4D;
+    border-radius: 10px;
+    background-color: #1C1C22;
+}
+
 /* ================== */
 
 .label-captura {
