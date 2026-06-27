@@ -990,7 +990,7 @@ canvas {
 }
 
 .sugestao-ia h3 {
-    font-family: DM_Serif_Display, Syne, sans-serif;
+    font-family: var(--fonte-titulo), sans-serif;
     font-size: 1.8em;
     font-weight: 200;
     font-style: italic;

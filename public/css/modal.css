@@ -83,7 +83,8 @@
     display: block;
     font-size: 2.8em;
     line-height: 0.8;
-    font-family: 'DM_Serif_Display', sans-serif;
+    font-family:  var(--fonte-titulo), sans-serif;
+    font-weight: 300;
 }
 
 .modal-header p {
@@ -121,7 +122,8 @@
     display: block;
     font-size: 2.8em;
     line-height: 0.8;
-    font-family: 'DM_Serif_Display', sans-serif;
+    font-family:  var(--fonte-titulo), sans-serif;
+    font-weight: 300;
 }
 
 .modal-header-meta p {
