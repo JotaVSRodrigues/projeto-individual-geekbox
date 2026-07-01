@@ -564,6 +564,18 @@ input {
     animation-delay: 0.4s;
 }
 
+.item-anim {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.item-anim.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 .header-container {
     animation: slideDown 1s ease both;
 }
@@ -587,4 +599,8 @@ input {
 #box-span {
   color: var(--dourado-principal);
   font-style: normal;
+}
+
+#span-concluido {
+    color: #1D9E75;
 }
