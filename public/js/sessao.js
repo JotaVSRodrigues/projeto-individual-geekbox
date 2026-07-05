@@ -70,12 +70,13 @@ function calcularHora() {
     const mesAtual = horas.getMonth();
     const anoAtual = horas.getFullYear();
 
-    const dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]    
+    const dias = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
     
 
     const welcomeSub = document.getElementById("welcome-subtitle")
-    if (welcomeSub) welcomeSub.innerHTML = `${dias[diaSemana-1]}, ${diaMes} ${meses[mesAtual]} ${anoAtual}`
+    if (welcomeSub) welcomeSub.innerHTML = `${dias[diaSemana]}, ${diaMes} ${meses[mesAtual]} ${anoAtual} `
+
 
     const welcomeSubSemana = document.getElementById("h4-span")
 
