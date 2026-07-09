@@ -319,6 +319,7 @@ select:open::picker-icon {
     display: flex;
     flex-direction: row;
     gap: 2px;
+    padding: 0;
 }
 
 .star-icon {

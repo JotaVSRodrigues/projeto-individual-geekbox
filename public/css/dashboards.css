@@ -13,6 +13,10 @@ h2 {
   line-height: 1;
 }
 
+h3 {
+  display: block;
+}
+
 h4 {
   font-family: var(--fonte-secundaria), sans-serif;
   font-weight: 500;
@@ -400,6 +404,23 @@ h4 {
     border-radius: 8px;
     margin-right: 20px;
     transition: background-color 0.3s;
+
+}
+
+.item h4 {
+  font-family: var(--fonte-principal);
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.item span {
+  font-family: var(--fonte-secundaria);
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.right-information span {
+  font-size: 1em;
 }
 
 /* Esperando a confirmação da professora se posso usar ou não */
@@ -473,7 +494,7 @@ h4 {
 
 
 .select-card-resenha h3 {
-    font-family: DM_Serif_Display, Syne, sans-serif ;
+    font-family: var(--fonte-titulo), var(--fonte-principal), sans-serif ;
     font-size: 1.7em;
     font-weight: 100;
     font-style: italic;
@@ -524,6 +545,14 @@ h4 {
 .card-information {
     display: flex;
     flex-direction: column;
+
+    font-family: var(--fonte-secundaria), sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    /* display: block; */
+    width: 100%;
+    line-height: 1.4;
+    caret-color: transparent;
 }
 
 
@@ -571,6 +600,7 @@ h4 {
     border-radius: 6px;
     padding: 10px;
     resize: none;
+    margin-bottom: 10px;
 }
 
 textarea {

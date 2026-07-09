@@ -84,7 +84,7 @@ function calcularHora() {
     const spanData = document.getElementById("span-data")
     const spanSemana = document.getElementById("span-semana")
     
-    if (spanDia) spanDia.innerHTML = `${dias[diaSemana-1]}`
+    if (spanDia) spanDia.innerHTML = `${dias[diaSemana]}`
     if (spanData) spanData.innerHTML = `${diaMes} ${meses[mesAtual]} ${anoAtual}`
 
 
