@@ -1286,3 +1286,11 @@ canvas {
 }
 
 /* ============ */
+/* 
+.content-graphics:nth-child(2) {
+
+} */
+
+.content-graphics .graphics:nth-child(2) .chart {
+    height: 210px; 
+}
