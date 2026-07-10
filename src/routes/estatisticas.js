@@ -36,6 +36,9 @@ router.get("/kpi-taxa-conclusao/:id", function (req, res) {
     estatisticaController.kpiTaxaConclusao(req, res);
 });
 
+router.get("/buscar-ano-dados/:id", function (req, res) {
+    estatisticaController.buscarAnoDados(req, res);
+})
 
 module.exports = router;
 

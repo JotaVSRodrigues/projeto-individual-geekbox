@@ -105,6 +105,18 @@ function frequenciaDeConsumo(req, res) {
         })
 }
 
+function buscarAnoDados(req, res) {
+    var usuarioId = req.params.id;
+
+    estatisticaModel.buscarAnoDados(usuarioId)
+        .then(function(resultado) {
+            res.status(200).json(resultado);
+        })
+        .catch(function(erro) {
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
 module.exports = {
     consumoMensal, 
     horasPorCategoria,
@@ -113,5 +125,6 @@ module.exports = {
     kpiHorasTotais,
     kpiHorasSemanais,
     kpiTaxaConclusao,
-    frequenciaDeConsumo
+    frequenciaDeConsumo,
+    buscarAnoDados
 };

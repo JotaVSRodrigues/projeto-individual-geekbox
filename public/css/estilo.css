@@ -596,6 +596,10 @@ input {
     animation: fadeUp 0.5s ease 0.32s both;
 }
 
+.dash-card.kpi:nth-child(5) {
+    animation: fadeUp 0.5s ease 0.40s both;
+}
+
 #box-span {
   color: var(--dourado-principal);
   font-style: normal;

@@ -126,6 +126,16 @@ function frequenciaDeConsumo(usuarioId) {
     return database.executar(instrucao); 
 }
 
+function buscarAnoDados(usuarioId) {
+    var instrucao = `
+    select year(criado_em) ano_criacao
+    from usuario
+    where id = ${usuarioId};
+    `;
+
+    return database.executar(instrucao); 
+}
+
 module.exports = {
     consumoMensal,
     horasPorCategoria,
@@ -134,5 +144,6 @@ module.exports = {
     kpiHorasTotais,
     kpiHorasSemanais,
     kpiTaxaConclusao,
-    frequenciaDeConsumo
+    frequenciaDeConsumo,
+    buscarAnoDados
 };
