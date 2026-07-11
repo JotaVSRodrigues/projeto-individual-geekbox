@@ -1342,3 +1342,57 @@ canvas {
         #141418 75%
     );
 }
+
+
+.home-card-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+}
+
+.home-card-body {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.home-card-categoria {
+    font-family: 'DM_Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #5c5a55;
+}
+
+.home-card-titulo {
+    font-family: 'DM_Serif_Display', serif;
+    font-size: 26px;
+    font-style: italic;
+    color: #e8e6de;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home-card-meta {
+    font-family: 'DM_Mono', monospace;
+    font-size: 14px;
+    color: #5c5a55;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sem-itens {
+    font-family: 'DM_Mono', monospace;
+    font-size: 14px;
+    color: #5c5a55;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 0;
+}
