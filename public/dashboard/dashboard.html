@@ -254,7 +254,7 @@
             });
 
 
-        fetch(`/estatisticas/kpi-horas-totais/${usuarioId}`)
+        fetch(`/estatisticas/kpi-horas-totais/${usuarioId}/${anoDados}`)
             .then(function (resposta) { return resposta.json(); })
             .then(function (data) {
                 let num = data[0].total_horas
@@ -268,7 +268,7 @@
                 console.error("Erro:", erro)
             });
 
-        fetch(`/estatisticas/kpi-horas-semanais/${usuarioId}`)
+        fetch(`/estatisticas/kpi-horas-semanais/${usuarioId}/${anoDados}`)
             .then(function (resposta) { return resposta.json(); })
             .then(function (data) {
 
@@ -277,7 +277,7 @@
                 console.error("Erro:", erro)
             });
 
-        fetch(`/estatisticas/kpi-taxa-conclusao/${usuarioId}`)
+        fetch(`/estatisticas/kpi-taxa-conclusao/${usuarioId}/${anoDados}`)
             .then(function (resposta) { return resposta.json(); })
             .then(function (data) {
 
@@ -302,7 +302,9 @@
 
 
     function carregarLinhas() {
-        fetch(`/estatisticas/consumo-mensal/${usuarioId}`)
+        const anoDados = selectAnoDados.value
+
+        fetch(`/estatisticas/consumo-mensal/${usuarioId}/${anoDados}`)
             .then(function (resposta) {
                 return resposta.json();
             })
@@ -378,7 +380,9 @@
     }
 
     function carregarDonut() {
-        fetch(`/estatisticas/horas-por-categoria/${usuarioId}`)
+        const anoDados = selectAnoDados.value
+
+        fetch(`/estatisticas/horas-por-categoria/${usuarioId}/${anoDados}`)
             .then(function (resposta) { return resposta.json() })
             .then(function (data) {
 
@@ -424,7 +428,9 @@
     }
 
     function carregarMetas() {
-        fetch(`/estatisticas/metas-por-ano/${usuarioId}`)
+        const anoDados = selectAnoDados.value
+
+        fetch(`/estatisticas/metas-por-ano/${usuarioId}/${anoDados}`)
             .then(function (resposta) { return resposta.json() })
             .then(function (data) {
 
@@ -491,7 +497,9 @@
     }
 
 function carregarHeatmap() {
-    fetch(`/estatisticas/frequencia-consumo/${usuarioId}`)
+    const anoDados = selectAnoDados.value
+
+    fetch(`/estatisticas/frequencia-consumo/${usuarioId}/${anoDados}`)
     .then((resposta) => { return resposta.json() })
     .then((data) => {
         let mapa = {};

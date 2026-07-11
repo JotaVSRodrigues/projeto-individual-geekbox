@@ -9,8 +9,9 @@ var estatisticaModel = require("../models/estatisticaModel");
 
 function consumoMensal(req, res) {
     var usuarioId = req.params.id; 
-    
-    estatisticaModel.consumoMensal(usuarioId)
+    var anoDados = req.params.anoDados;
+
+    estatisticaModel.consumoMensal(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
@@ -21,8 +22,9 @@ function consumoMensal(req, res) {
 
 function horasPorCategoria(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.horasPorCategoria(usuarioId)
+    estatisticaModel.horasPorCategoria(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
@@ -33,8 +35,9 @@ function horasPorCategoria(req, res) {
 
 function metasVsConcluidos(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.metasVsConcluidos(usuarioId)
+    estatisticaModel.metasVsConcluidos(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
@@ -58,8 +61,9 @@ function kpiConcluidos(req, res) {
 
 function kpiHorasTotais(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.kpiHorasTotais(usuarioId)
+    estatisticaModel.kpiHorasTotais(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
@@ -71,8 +75,9 @@ function kpiHorasTotais(req, res) {
 
 function kpiHorasSemanais(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.kpiHorasSemanais(usuarioId)
+    estatisticaModel.kpiHorasSemanais(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
@@ -83,8 +88,9 @@ function kpiHorasSemanais(req, res) {
 
 function kpiTaxaConclusao(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.kpiTaxaConclusao(usuarioId)
+    estatisticaModel.kpiTaxaConclusao(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
@@ -95,8 +101,9 @@ function kpiTaxaConclusao(req, res) {
 
 function frequenciaDeConsumo(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.frequenciaDeConsumo(usuarioId)
+    estatisticaModel.frequenciaDeConsumo(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
