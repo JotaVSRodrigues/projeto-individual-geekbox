@@ -89,12 +89,17 @@ function kpiHorasTotais(usuarioId, anoDados) {
 function kpiHorasSemanais(usuarioId, anoDados) {
     var instrucao = `
         select 
-        concat(
-            round(sum(horas) / (round((dayofyear(curdate()) / 7), 0)), 0), 'h' ) 
-            horas_semanais
-        from item 
-        where usuario_id = ${usuarioId}
-            and year(concluido_em) = ${anoDados};
+            concat(
+                round(
+                    IFNULL(sum(i.horas), 0) / 
+                    IFNULL(NULLIF(round(datediff(curdate(), u.criado_em) / 7, 0), 0), 1)
+                , 0), 'h'
+            ) as horas_semanais
+        from item i
+        join usuario u on u.id = i.usuario_id
+        where i.usuario_id = ${usuarioId}
+            and year(i.concluido_em) = ${anoDados}
+        group by u.criado_em;
     `;
 
     return database.executar(instrucao);
