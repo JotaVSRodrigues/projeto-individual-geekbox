@@ -78,7 +78,7 @@ function kpiConcluidos(usuarioId, anoDados) {
 function kpiHorasTotais(usuarioId, anoDados) {
     var instrucao = `
         select 
-            concat(round(sum(horas), 0), 'h' )total_horas
+            sum(horas) as total_horas
         from item 
         where usuario_id = ${usuarioId}
             and year(concluido_em) = ${anoDados};
@@ -107,22 +107,20 @@ function kpiHorasSemanais(usuarioId, anoDados) {
 
 function kpiTaxaConclusao(usuarioId, anoDados) {
     var instrucao = `
-    select 
-        concat(round(
-            (select count(*) 
+        select 
+        (
+			select count(*) 
             from item 
             where usuario_id = ${usuarioId} 
             and status = 'concluido'
             and year(concluido_em) = ${anoDados}
-            ) 
-            / 
-            (select count(*) 
+		) as concluidos,
+		(
+			select count(*) 
             from item 
             where usuario_id = ${usuarioId}
             and year(iniciado_em) = ${anoDados}
-            
-            ) * 100
-        , 0), '%') as taxa_concluido;
+		) as iniciados;
     `;
 
     return database.executar(instrucao);

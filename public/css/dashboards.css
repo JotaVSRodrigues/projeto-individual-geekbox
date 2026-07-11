@@ -1396,3 +1396,12 @@ canvas {
     letter-spacing: 0.08em;
     padding: 12px 0;
 }
+
+#grafico-metas-div, #grafico-donut-div, #grafico-linha-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6em;
+  font-family: var(--fonte-titulo);
+  font-style: italic;
+}
