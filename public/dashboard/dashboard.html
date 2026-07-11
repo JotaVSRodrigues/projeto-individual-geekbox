@@ -222,6 +222,10 @@
     const usuarioId = sessionStorage.getItem("ID_USUARIO");
     const selectAnoDados = document.getElementById("select_current_year")
 
+    let graficoLinha = null;
+    let graficoDonut = null;
+    let graficoMetas = null;
+
     if (!usuarioId) {
         console.error("usuarioId não encontrado!");
         window.location.href = "../html/login.html";
@@ -237,7 +241,11 @@
     })
 
     selectAnoDados.addEventListener("change", () => {
-        anoDados();
+        carregarKpis();
+        carregarDonut();
+        carregarLinhas();
+        carregarMetas();
+        carregarHeatmap();
     })
 
     function carregarKpis() {
@@ -349,7 +357,11 @@
                     });
                 }
 
-                new Chart(document.getElementById("grafico-linha"), {
+                if (graficoLinha) {
+                    graficoLinha.destroy();
+                }
+
+                graficoLinha = new Chart(document.getElementById("grafico-linha"), {
                     type: 'line',
                     data: {
                         labels: MESES, datasets: datasets
@@ -395,8 +407,12 @@
                     valores.push(data[i].total_horas);
                     cores.push(CORES[data[i].nome_categoria] || '#888');
                 }
+                
+                if (graficoDonut) {
+                    graficoDonut.destroy();
+                }
 
-                new Chart(document.getElementById("grafico-donut"), {
+                graficoDonut = new Chart(document.getElementById("grafico-donut"), {
                     type: 'doughnut',
                     data: {
                         labels: labels,
@@ -447,7 +463,11 @@
 
                 }
 
-                new Chart(document.getElementById("grafico-metas"), {
+                if (graficoMetas) {
+                    graficoMetas.destroy();
+                }
+
+                graficoMetas = new Chart(document.getElementById("grafico-metas"), {
                     type: 'bar',
                     data: {
                         labels: labels,
@@ -575,21 +595,26 @@ function anoDados() {
         .then((resposta) => { return resposta.json() })
         .then((data) => {
             const anoCriacao = data[0].ano_criacao
+            selectAnoDados.innerHTML = "";
             
             for (let i = anoAtual; i > anoCriacao - 1; i--) {
+
                 const option = document.createElement("option")
                 console.log(i)
                 option.value = i
                 option.text = i
 
+                if (i === anoAtual) {
+                    option.selected = true;
+                }
                 selectAnoDados.appendChild(option)
-
-                carregarKpis();
-                carregarDonut();
-                carregarLinhas();
-                carregarMetas();
-                carregarHeatmap();
             }
+
+            carregarKpis();
+            carregarDonut();
+            carregarLinhas();
+            carregarMetas();
+            carregarHeatmap();
         }).catch((error) => {
             console.error("Erro no fetch da busca do ano", error)
         })

@@ -1337,10 +1337,9 @@ canvas {
     position: absolute;
     inset: 0;
     background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(20, 20, 24, 0.6) 40%,
-        #141418 75%
+    to bottom,
+    transparent 45%,
+    #141418 85%
     );
 }
 

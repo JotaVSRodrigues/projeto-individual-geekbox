@@ -6,6 +6,7 @@ var database = require("../database/config");
 // metasVsConcluidos
 
 function consumoMensal(usuarioId, anoDados) {
+    // console.log({ usuarioId, anoDados });
     var instrucao = `
         select month(i.concluido_em) mes,
             c.nome_categoria, 
@@ -98,8 +99,7 @@ function kpiHorasSemanais(usuarioId, anoDados) {
         from item i
         join usuario u on u.id = i.usuario_id
         where i.usuario_id = ${usuarioId}
-            and year(i.concluido_em) = ${anoDados}
-        group by u.criado_em;
+            and year(i.concluido_em) = ${anoDados};
     `;
 
     return database.executar(instrucao);
