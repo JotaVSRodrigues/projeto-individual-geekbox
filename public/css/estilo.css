@@ -608,3 +608,36 @@ input {
 #span-concluido {
     color: #1D9E75;
 }
+
+.social-dashboard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-dash-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-dash-title h2 {
+  margin: 148px 0 0 0;
+  line-height: 1.0;
+  font-family: var(--fonte-titulo);
+  font-weight: 400;
+  font-size: 3.6em;
+}
+
+.div-dash-title p {
+  margin: 0;
+  line-height: 1.0;
+  font-family: var(--fonte-principal);
+  font-weight: 400;
+  font-size: 1.4em;
+  font-style: italic;
+  margin: 14px 0 24px 0;  
+}

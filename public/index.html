@@ -25,7 +25,7 @@
         <ul class="navbar">
           <li><a href="#first">home</a></li>    
           <li><a href="#second">sobre o projeto</a></li>    
-          <li><a href="#third">dashboard</a></li>    
+          <li><a href="#dashboard-div">dashboard</a></li>    
         </ul>
         <a href="./login.html">
           <button class="btn-login">Login</button>
@@ -106,12 +106,17 @@
       </div>
     </div>
 
-    <div class="social">
+    <div class="social" id="dashboard-div">
       <div class="container social-dashboard">
-         <h2 class="dashboard-title">
-            <p>Sua <span class="italic-span">Dashboard!</span></p>  
-          </h2>
-          <img src="/assets/images/landing-page/dashboard-print.png" alt="Dashboard" class="dashboard-img">
+         <div class="div-dash-title">
+           <h2 class="dashboard-title">
+              Sua <span class="italic-span">Dashboard!</span>
+            </h2>
+            <p>É aqui onde você analisa métrica por métrica, sem deixar nada passar.</p>
+         </div>
+          <div>
+            <img src="./assets/imgs/dash-img.png" alt="Dashboard" class="dashboard-img">
+          </div>
       </div>
     </div>
 
@@ -120,7 +125,7 @@
         <div class="card card-cta">
           <h2>Comece a usar <span>HOJE!</span></h2>
           <p>Nunca mais perca de vista o que te entretem no dia a dia.</p>
-          <button class="btn-login">Acessar GeekBox</button>
+          <a href="login.html"><button class="btn-login">Acessar GeekBox</button></a>
         </div>
       </div>
     </div>
