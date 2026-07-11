@@ -1258,7 +1258,8 @@ canvas {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    margin-top: 20px;
 }
 
 .em-progresso-title h4 {
@@ -1360,7 +1361,7 @@ canvas {
 }
 
 .home-card-categoria {
-    font-family: 'DM_Mono', monospace;
+    font-family: var(--fonte-secundaria), monospace;
     font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
@@ -1369,7 +1370,7 @@ canvas {
 }
 
 .home-card-titulo {
-    font-family: 'DM_Serif_Display', serif;
+    font-family: var(--fonte-titulo), serif;
     font-size: 26px;
     font-style: italic;
     color: #e8e6de;
@@ -1380,7 +1381,7 @@ canvas {
 }
 
 .home-card-meta {
-    font-family: 'DM_Mono', monospace;
+    font-family: var(--fonte-secundaria), monospace;
     font-size: 14px;
     color: #5c5a55;
     white-space: nowrap;
@@ -1389,7 +1390,7 @@ canvas {
 }
 
 .sem-itens {
-    font-family: 'DM_Mono', monospace;
+    font-family: var(--fonte-secundaria), monospace;
     font-size: 14px;
     color: #5c5a55;
     text-transform: uppercase;
