@@ -144,11 +144,11 @@
                             </h3>
                             <span class="subtitle-card">itens concluídos por mês · por categoria</span>
                         </div>
-                        <div class="chart" id="grafico-linha-div">
-                            <canvas id="grafico-linha">
-                                
-                            </canvas>
-                            
+                        <div class="chart">
+                            <canvas id="grafico-linha"></canvas>
+                            <div id="grafico-linha-div" style="display:none">
+                                Não há dados disponíveis por aqui.
+                            </div>
                         </div>
                     </div>
 
@@ -159,10 +159,13 @@
                             </h3>
                             <span class="subtitle-card">distribuição em 2026</span>
                         </div>
-                        <div class="chart" id="grafico-donut-div">
+                        <div class="chart">
                             <canvas id="grafico-donut">
 
                             </canvas>
+                            <div id="grafico-donut-div" style="display:none">
+                                Não há dados disponíveis por aqui.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,10 +179,13 @@
                             </h3>
                             <span class="subtitle-card">itens a serem consumidos no ano · por categoria</span>
                         </div>
-                        <div class="chart" id="grafico-metas-div">
+                        <div class="chart">
                             <canvas id="grafico-metas">
 
                             </canvas>
+                            <div id="grafico-metas-div" style="display:none">
+                                Não há dados disponíveis por aqui.
+                            </div>
                         </div>
 
                     </div>
@@ -288,7 +294,7 @@
                 let num = 0 
 
                 if (data[0].iniciados != 0) {
-                    Math.round((data[0].concluidos / data[0].iniciados) * 100)
+                    num = Math.round((data[0].concluidos / data[0].iniciados) * 100)
                 }
                 
                 document.getElementById("kpi-conclusao").innerText = num + "%";
@@ -358,11 +364,21 @@
                     });
                 }
 
-                if (graficoLinha) {
-                    graficoLinha.destroy();
+                if (datasets.length === 0) {
+                    if (graficoLinha) {
+                        graficoLinha.destroy();
+                        graficoLinha = null;
+                    }
+
+                    document.getElementById("grafico-linha-div").style.display = "flex";
+                    document.getElementById("grafico-linha").style.display = "none";
+                    return;
                 }
 
-                graficoLinha = datasets.length != 0 ? new Chart(document.getElementById("grafico-linha"), {
+                document.getElementById("grafico-linha-div").style.display = "none";
+                document.getElementById("grafico-linha").style.display = "block";
+
+                graficoLinha = new Chart(document.getElementById("grafico-linha"), {
                     type: 'line',
                     data: {
                         labels: MESES, datasets: datasets
@@ -386,7 +402,7 @@
                             }
                         }
                     }
-                }) : document.getElementById("grafico-linha-div").innerHTML = "Não há dados disponíveis por aqui.";
+                }) 
             }).catch(function (erro) {
                 console.error("Erro ao carregar consumo anual:", erro)
             });
@@ -409,13 +425,21 @@
                     cores.push(CORES[data[i].nome_categoria] || '#888');
                 }
                 
-                if (graficoDonut) {
-                    graficoDonut.destroy();
+                if (labels.length === 0) {
+                    if (graficoDonut) {
+                        graficoDonut.destroy();
+                        graficoDonut = null;
+                    }
+
+                    document.getElementById("grafico-donut-div").style.display = "flex";
+                    document.getElementById("grafico-donut").style.display = "none";
+                    return;
                 }
 
-                if (document.getElementById)
+                document.getElementById("grafico-donut-div").style.display = "none";
+                document.getElementById("grafico-donut").style.display = "block";
 
-                graficoDonut = labels.length != 0 ? new Chart(document.getElementById("grafico-donut"), {
+                graficoDonut = new Chart(document.getElementById("grafico-donut"), {
                     type: 'doughnut',
                     data: {
                         labels: labels,
@@ -440,7 +464,7 @@
                             }
                         }
                     }
-                }) : document.getElementById("grafico-donut-div").innerHTML = "Não há dados disponíveis por aqui."
+                })
             }).catch(function (erro) {
                 console.error("Erro ao carregar horas por categoria:", erro)
             });
@@ -466,11 +490,21 @@
 
                 }
 
-                if (graficoMetas) {
-                    graficoMetas.destroy();
+                if (labels.length === 0) {
+                    if (graficoMetas) {
+                        graficoMetas.destroy();
+                        graficoMetas = null;
+                    }
+
+                    document.getElementById("grafico-metas-div").style.display = "flex";
+                    document.getElementById("grafico-metas").style.display = "none";
+                    return;
                 }
 
-                graficoMetas = labels.length != 0 ? new Chart(document.getElementById("grafico-metas"), {
+                document.getElementById("grafico-metas-div").style.display = "none";
+                document.getElementById("grafico-metas").style.display = "block";
+
+                graficoMetas = new Chart(document.getElementById("grafico-metas"), {
                     type: 'bar',
                     data: {
                         labels: labels,
@@ -511,9 +545,7 @@
                             }
                         }
                     }
-                }) : document.getElementById("grafico-metas-div").innerHTML = "Não há dados disponíveis por aqui."
-
-
+                }) 
             }).catch(function (erro) {
                 console.error("Erro ao carregar horas por categoria:", erro)
             });
