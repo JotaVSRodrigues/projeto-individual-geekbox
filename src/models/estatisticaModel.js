@@ -45,11 +45,12 @@ function metasVsConcluidos(usuarioId, anoDados) {
         m.quantidade quantidade_meta,
 		(select 
 			count(*)
-		from item
-        where status = 'concluido'
-			and year(concluido_em) = ${anoDados}
-            and usuario_id = ${usuarioId}) as quantidade_concluido
-
+		from item i2
+        where i2.status = 'concluido'
+			and year(i2.concluido_em) = ${anoDados}
+            and i2.usuario_id = ${usuarioId} 
+            and i2.categoria_id = c.id_categoria
+        ) as quantidade_concluido
         from meta m
         join categoria c on m.categoria_id = c.id_categoria
         join item i on i.categoria_id = c.id_categoria
@@ -57,7 +58,7 @@ function metasVsConcluidos(usuarioId, anoDados) {
             and i.status = 'concluido'
             and year(i.concluido_em) = ${anoDados}
             and m.ano = ${anoDados}
-        group by c.nome_categoria, quantidade_meta;
+        group by c.nome_categoria, m.quantidade, c.id_categoria;
     `;
 
     return database.executar(instrucao);
@@ -81,6 +82,7 @@ function kpiHorasTotais(usuarioId, anoDados) {
             sum(horas) as total_horas
         from item 
         where usuario_id = ${usuarioId}
+            and status = 'concluido'
             and year(concluido_em) = ${anoDados};
     `;
 
