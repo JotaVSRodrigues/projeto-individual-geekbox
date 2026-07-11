@@ -219,11 +219,9 @@
 </html>
 
 <script>
-    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
 
     const usuarioId = sessionStorage.getItem("ID_USUARIO");
-    // console.log("usuarioId:", usuarioId);
+    const selectAnoDados = document.getElementById("select_current_year")
 
     if (!usuarioId) {
         console.error("usuarioId não encontrado!");
@@ -246,17 +244,13 @@
 
 
     function carregarKpis() {
-        // dps colocar catch em todos os fetchs ou try catch em tudo (mas acho que nao pode)
+        const anoDados = selectAnoDados.value
 
-        fetch(`/estatisticas/kpi-concluidos/${usuarioId}`)
+        fetch(`/estatisticas/kpi-concluidos/${usuarioId}/${anoDados}`)
             .then(function (resposta) {
                 return resposta.json();
             })
             .then(function (data) {
-
-                console.log("DATA KPI 1:", data)
-                console.log("QTD CONCLUIDO:", data[0].quantidade_concluido)
-
                 document.getElementById("kpi-concluidos").innerHTML = data[0].quantidade_concluido;
             }).catch(function (erro) {
                 console.error("Erro:", erro)
@@ -266,14 +260,11 @@
         fetch(`/estatisticas/kpi-horas-totais/${usuarioId}`)
             .then(function (resposta) { return resposta.json(); })
             .then(function (data) {
-                console.log("DATA KPI 2:", data)
-
                 let num = data[0].total_horas
                 let numInteiro = Math.trunc(num);
                 let parteDecimal = ((num % 1).toFixed(2) * 60)
                 let horaFormatada = `${numInteiro}h${parteDecimal}min`
 
-                // console.log("QTD HORAS TOTAIS:", data[0].total_horas)
 
                 document.getElementById("kpi-horas").innerText = data[0].total_horas;
             }).catch(function (erro) {
@@ -283,8 +274,6 @@
         fetch(`/estatisticas/kpi-horas-semanais/${usuarioId}`)
             .then(function (resposta) { return resposta.json(); })
             .then(function (data) {
-                console.log("DATA KPI 3:", data)
-                console.log("QTD HORAS SEMANAIS:", data[0].total_horas)
 
                 document.getElementById("kpi-semanal").innerText = data[0].horas_semanais;
             }).catch(function (erro) {
@@ -294,8 +283,7 @@
         fetch(`/estatisticas/kpi-taxa-conclusao/${usuarioId}`)
             .then(function (resposta) { return resposta.json(); })
             .then(function (data) {
-                console.log("DATA KPI 4:", data)
-                console.log(`TAXA CONCLUSAO DO USUÁRIO ${usuarioId} ${data[0].taxa_concluido}`)
+
 
                 document.getElementById("kpi-conclusao").innerText = data[0].taxa_concluido;
             }).catch(function (erro) {
@@ -396,7 +384,6 @@
         fetch(`/estatisticas/horas-por-categoria/${usuarioId}`)
             .then(function (resposta) { return resposta.json() })
             .then(function (data) {
-                console.log("DATA DONUT: ", data);
 
                 let labels = []
                 let valores = []
@@ -443,7 +430,6 @@
         fetch(`/estatisticas/metas-por-ano/${usuarioId}`)
             .then(function (resposta) { return resposta.json() })
             .then(function (data) {
-                console.log("DATA BARRA: ", data);
 
                 let labels = [];
                 let valoresMeta = [];
@@ -456,7 +442,6 @@
                     valoresConcluido.push(data[i].quantidade_concluido);
                     cores.push(CORES[data[i].nome_categoria] || '#888');
 
-                    console.log(`${labels[i]} || ${valoresMeta[i]} || ${valoresConcluido[i]}`)
                 }
 
                 new Chart(document.getElementById("grafico-metas"), {
@@ -578,15 +563,12 @@ function carregarHeatmap() {
 
 
 function anoDados() {
-    const selectAnoDados = document.getElementById("select_current_year")
+        
     const anoAtual = new Date().getFullYear()
     
-    console.log(usuarioId)
-
     fetch(`/estatisticas/buscar-ano-dados/${usuarioId}`)
         .then((resposta) => { return resposta.json() })
         .then((data) => {
-            console.log("ANO DE CRIACAO: ", data[0])
             const anoCriacao = data[0].ano_criacao
             
             for (let i = anoAtual; i > anoCriacao - 1; i--) {
@@ -595,7 +577,6 @@ function anoDados() {
                 option.text = i
 
                 selectAnoDados.appendChild(option)
-                console.log(i)
             }
         }).catch((error) => {
             console.error("Erro no fetch da busca do ano", error)

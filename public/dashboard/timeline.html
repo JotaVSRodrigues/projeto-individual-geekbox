@@ -447,7 +447,6 @@
             ${campoResenha}
             `;
 
-                console.log(data[0].classificacao)
                 aplicarClassificacaoSalva(data[0].classificacao);
                 document.querySelector('.avaliacao').addEventListener('click', function (e) {
                     if (!e.target.classList.contains('star-icon')) return;

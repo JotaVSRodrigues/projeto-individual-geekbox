@@ -36,8 +36,6 @@ function finalizarAguardar(texto) {
 }
 
 function calcularHora() {
-    console.log("calcularHora chamada")
-
     const horas = new Date();
     const horaAtual = horas.getHours();
   
@@ -93,7 +91,6 @@ function calcularHora() {
 
     fetch(`/usuarios/buscar-semanas/${usuarioIdLogado}`)
     .then((resposta) => { 
-        console.log("resposta status:", resposta.status) 
         return resposta.json() })
     .then((data) => {
   

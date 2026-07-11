@@ -533,7 +533,6 @@ function getItem(itemId) {
     fetch(`/itens/buscar-item/${itemId}`)
     .then((resposta) => { return resposta.json() })
     .then((data) => {
-        console.log("FETCH DO GETITEM() FUNCIONANDO. DADOS=> ", data)
         
         itemAtual = data[0]
         let num = data[0].horas;

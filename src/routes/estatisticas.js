@@ -20,7 +20,7 @@ router.get("/frequencia-consumo/:id", function (req, res) {
     estatisticaController.frequenciaDeConsumo(req, res);
 });
 
-router.get("/kpi-concluidos/:id", function (req, res) {
+router.get("/kpi-concluidos/:id/:anoDados", function (req, res) {
     estatisticaController.kpiConcluidos(req, res);
 });
 

@@ -56,13 +56,13 @@ function metasVsConcluidos(usuarioId) {
     return database.executar(instrucao);
 }
 
-function kpiConcluidos(usuarioId) {
+function kpiConcluidos(usuarioId, anoDados) {
     var instrucao = `
-        select count(*) quantidade_concluido   
-        from item i 
-        where i.usuario_id = ${usuarioId}
-            and i.status = 'concluido'
-        group by year(now());
+        select count(*) quantidade_concluido
+		from item i
+		where i.usuario_id = ${usuarioId}
+			and i.status = 'concluido'
+			and year(i.concluido_em) = ${anoDados};
     `;
 
     return database.executar(instrucao);

@@ -45,8 +45,9 @@ function metasVsConcluidos(req, res) {
 
 function kpiConcluidos(req, res) {
     var usuarioId = req.params.id;
+    var anoDados = req.params.anoDados;
 
-    estatisticaModel.kpiConcluidos(usuarioId)
+    estatisticaModel.kpiConcluidos(usuarioId, anoDados)
         .then(function(resultado) {
             res.status(200).json(resultado);
         })
