@@ -677,6 +677,10 @@ function registerItem() {
     var minutos = ipt_minutos.value
     var urlImagem = ipt_url_imagem.value
 
+    var iniciadoEm = new Date().toISOString().split('T')[0]
+    var concluidoEm = status === 'concluido' ? new Date().toISOString().split('T')[0] : null;
+
+    // var concluidoEm = 
     console.log(ipt_titulo.value)
     console.log(idCategoria)
     console.log(idGenero)
@@ -712,7 +716,10 @@ function registerItem() {
             statusServer: status,
             horasServer: horasTotais,
             generoIdServer: idGenero,
-            urlImagemServer: urlImagem
+            urlImagemServer: urlImagem,
+
+            iniciadoEmServer: iniciadoEm,
+            concluidoEmServer: concluidoEm
         }),
     }).then(function (resposta) {
         console.log("resposta: ", resposta);

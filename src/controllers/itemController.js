@@ -19,7 +19,10 @@ function cadastrarItem(req, res) {
     const generoId = req.body.generoIdServer;
     const urlImagem = req.body.urlImagemServer;
 
-    itemModel.cadastrarItem(usuarioId, categoriaId, titulo, status, horas, generoId, urlImagem)
+    const iniciadoEm = req.body.iniciadoEmServer;
+    const concluidoEm = req.body.concluidoEmServer;
+
+    itemModel.cadastrarItem(usuarioId, categoriaId, titulo, status, horas, generoId, urlImagem, iniciadoEm, concluidoEm)
         .then(function(resposta) {
             res.status(200).json(resposta)
         }).catch(function(erro) {

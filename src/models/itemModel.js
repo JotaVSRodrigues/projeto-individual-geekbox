@@ -7,12 +7,20 @@ function buscarGeneros() {
     return database.executar(instrucao);
 }
 
-function cadastrarItem(usuarioId, categoriaId, titulo, status, horas, generoId, urlImagem) {
+function cadastrarItem(usuarioId, categoriaId, titulo, status, horas, generoId, urlImagem, iniciadoEm, concluidoEm) {
+    let instrucaoSQL = ''
 
-    let instrucaoSQL = `
-        insert into item (usuario_id, categoria_id, titulo, status, horas, genero_id, url_imagem) values
-        (${usuarioId}, ${categoriaId}, '${titulo}', '${status}', ${horas}, ${generoId}, '${urlImagem}');
+    if (concluidoEm === null) {
+        instrucaoSQL = `
+        insert into item (usuario_id, categoria_id, titulo, status, horas, genero_id, url_imagem, iniciado_em, concluido_em) values
+        (${usuarioId}, ${categoriaId}, '${titulo}', '${status}', ${horas}, ${generoId}, '${urlImagem}', '${iniciadoEm}', ${concluidoEm});
     `;
+    } else {
+        instrucaoSQL = `
+            insert into item (usuario_id, categoria_id, titulo, status, horas, genero_id, url_imagem, iniciado_em, concluido_em) values
+            (${usuarioId}, ${categoriaId}, '${titulo}', '${status}', ${horas}, ${generoId}, '${urlImagem}', '${iniciadoEm}', '${concluidoEm}');
+        `;
+    }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSQL);
     return database.executar(instrucaoSQL);
