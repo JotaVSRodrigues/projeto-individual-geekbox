@@ -322,10 +322,6 @@
                 return resposta.json();
             })
             .then(function (data) {
-
-                console.log("DATA:", data);
-                console.log("TIPO:", typeof data);
-
                 var series = {};
 
                 for (let i = 0; i < data.length; i++) {
@@ -336,6 +332,14 @@
                     }
 
                     series[row.nome_categoria][row.mes - 1] = row.total;
+
+                    // series = {
+                    //     jogo:   [1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+                    //     livro:  [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                    //     serie:  [0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+                    //     filme:  [0, 0, 0, 2, 0, 3, 1, 0, 0, 0, 0, 0],
+                    //     musica: [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+                    // }
                 }
 
                 var datasets = [];
@@ -577,6 +581,7 @@ function anoDados() {
     const selectAnoDados = document.getElementById("select_current_year")
     const anoAtual = new Date().getFullYear()
     
+    console.log(usuarioId)
 
     fetch(`/estatisticas/buscar-ano-dados/${usuarioId}`)
         .then((resposta) => { return resposta.json() })
