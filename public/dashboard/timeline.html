@@ -29,7 +29,6 @@
 
 
         <div class="header-left">
-
             <div class="title">
                 <div class="icon-img">
                     <img src="../assets/icons/spider-man-icon.png" alt="">
@@ -63,6 +62,67 @@
 
         <div class="dash-right">
 
+            <div class="modal-container-filtro">
+                <div class="modal">
+                    <div class="close-modal">
+                        <button onclick="fecharItemCard(modalFiltro)">
+                            <img src="../assets/icons/x-icon.png" alt="">
+                        </button>
+                    </div>
+                    <div class="modal-header">
+                        <div>
+                            <h2>
+                                <span>Filtre seus </span>
+                                <span id="highlight-span">itens.</span>
+                            </h2>
+                        </div>
+                        <div>
+                            <p>
+                                <span>Jogos, livros, filmes, séries,</span>
+                                <span>animes, mangás e músicas</span>
+                                <span>— rastreados, organizados</span>
+                                <span>e visualizados <span id="highlight-span">num só lugar.</span></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="label-box" id="label-box-modal">
+
+                        <form id="filter-form">
+                            <div class="responsive-labels">
+                                <select name="Categoria" id="select_categoria_filtro">
+                                    <option value="" disabled selected hidden>Categoria</option>
+                                    <option value="jogo">Jogo</option>
+                                    <option value="livro">Livro</option>
+                                    <option value="filme">Filme</option>
+                                    <option value="serie">Série</option>
+                                    <option value="anime">Anime</option>
+                                    <option value="manga">Mangá</option>
+                                    <option value="musica">Música</option>
+                                </select>
+                                <!-- <select name="Status" id="select_status_filtro">
+                                    <option value="" disabled selected hidden>Status</option>
+                                    <option value="wishlist">Wishlist</option>
+                                    <option value="em_progresso">Em Progresso</option>
+                                    <option value="concluido">Concluído</option>
+                                    <option value="pausado">Pausado</option>
+                                    <option value="abandonado">Abandonado</option>
+                                </select> -->
+                            </div>
+                            <div class="btn-cadastro-div">
+                                <div class="btn-filtro-div">
+                                    <button type="submit" id="save-filter" class="btn-cadastro">Salvar Filtro</button>
+                                    <button type="button" id="clean-filter" class="btn-cadastro"
+                                        onclick="limparFiltro()">Limpar Filtro</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                </div>
+            </div>
             <div class="container wishlist-container">
                 <div class="content-container">
                     <div class="content-wishlist anim-scale-in anim-d1">
@@ -112,173 +172,172 @@
 </html>
 
 <script>
-let qtdItems = 0;
-const fieldList = document.getElementById("field-list");
-const modalItem = document.querySelector('.modal-container-item');
-const modalMeta = document.querySelector('.modal-container-meta');
-const divCard = document.getElementById("div-content-selected");
+    let qtdItems = 0;
+    const fieldList = document.getElementById("field-list");
+    // const modalItem = document.querySelector('.modal-container-item');
+    // const modalMeta = document.querySelector('.modal-container-meta');
+    const divCard = document.getElementById("div-content-selected");
 
-const modalFiltro = document.querySelector('.modal-container-filtro')
-const form = document.getElementById("filter-form");
+    const modalFiltro = document.querySelector('.modal-container-filtro')
+    const form = document.getElementById("filter-form");
 
-let allItens = []
-let termoBusca = ""
-let itemAtual = null
+    let allItens = []
+    let termoBusca = ""
+    let itemAtual = null
 
-let genres = [];
+    let genres = [];
 
-const inputBusca = document.getElementById("ipt_search_bar")
+    const inputBusca = document.getElementById("ipt_search_bar")
 
-if (inputBusca) {
-    inputBusca.addEventListener('input', (event) => {
-        termoBusca = inputBusca.value.toLowerCase().trim()
-        console.log(termoBusca)
-        const categoria = document.getElementById('select_categoria_filtro').value
-        const status = document.getElementById('select_status_filtro').value
-        aplicarFiltros(categoria, status)
-    })
-}
+    if (inputBusca) {
+        inputBusca.addEventListener('input', (event) => {
+            termoBusca = inputBusca.value.toLowerCase().trim()
+            console.log(termoBusca)
+            const categoria = document.getElementById('select_categoria_filtro').value
+            // const status = document.getElementById('select_status_filtro').value
+            aplicarFiltros(categoria)
+        })
+    }
 
-async function carregarGeneros() {
-    const resposta = await fetch(`/itens/buscar-generos`);
-    genres = await resposta.json();
-}
+    async function carregarGeneros() {
+        const resposta = await fetch(`/itens/buscar-generos`);
+        genres = await resposta.json();
+    }
 
-document.addEventListener("DOMContentLoaded", function() {
-    // updateDateSubtitle();
-    carregarGeneros();
-    carregarItens();
-    renderizarItens();
+    document.addEventListener("DOMContentLoaded", function () {
+        // updateDateSubtitle();
+        carregarGeneros();
+        carregarItens();
+        renderizarItens();
 
-    const categorySelect = document.getElementById("select_categoria");
-    const genreSelect = document.getElementById("select_genero");
+        const categorySelect = document.getElementById("select_categoria");
+        const genreSelect = document.getElementById("select_genero");
 
-    categorySelect.addEventListener("change", () => {
-        const selectedCategory = categorySelect.value;
+        categorySelect.addEventListener("change", () => {
+            const selectedCategory = categorySelect.value;
 
-        genreSelect.innerHTML = '<option value="" disabled selected hidden>Gênero</option>';
+            genreSelect.innerHTML = '<option value="" disabled selected hidden>Gênero</option>';
 
-        genres
-            .filter(genre => genre.id_categoria == selectedCategory)
-            .forEach(genre => {
-                const option = document.createElement("option");
-                option.value = genre.id;
-                option.textContent = genre.nome;
-                genreSelect.appendChild(option);
-            });
+            genres
+                .filter(genre => genre.id_categoria == selectedCategory)
+                .forEach(genre => {
+                    const option = document.createElement("option");
+                    option.value = genre.id;
+                    option.textContent = genre.nome;
+                    genreSelect.appendChild(option);
+                });
+        });
     });
-});
 
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const categoria = document.getElementById('select_categoria_filtro').value;
-    const status    = document.getElementById('select_status_filtro').value;
-    aplicarFiltros(categoria, status);
-});
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const categoria = document.getElementById('select_categoria_filtro').value;
+        // const status = document.getElementById('select_status_filtro').value;
+        aplicarFiltros(categoria);
+    });
 
-function calculateMonth() {
-    const date = new Date();
-    const month = date.getMonth();
+    function calculateMonth() {
+        const date = new Date();
+        const month = date.getMonth();
 
-    const months = [
-        "JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL",
-        "MAIO", "JUNHO", "JULHO", "AGOSTO",
-        "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
-    ];
+        const months = [
+            "JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL",
+            "MAIO", "JUNHO", "JULHO", "AGOSTO",
+            "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
+        ];
 
-    return months[month];
-}
+        return months[month];
+    }
 
-function criarItemCard(modal) {
-    modal.classList.remove("closing");
-    modal.classList.add("active");
-}
-
-function fecharItemCard(modal) {
-    modal.classList.add("closing");
-
-    setTimeout(() => {
-        modal.classList.remove("active");
+    function criarItemCard(modal) {
         modal.classList.remove("closing");
-    }, 600);
-}
+        modal.classList.add("active");
+    }
 
-function carregarItens() {
-    const usuarioId = sessionStorage.getItem("ID_USUARIO");
+    function fecharItemCard(modal) {
+        modal.classList.add("closing");
 
-    
-    fetch(`/itens/buscar-timeline/${usuarioId}`)
-    .then((resposta) => { return resposta.json() })
-    .then((data) => {
-       
-        allItens = data
-        renderizarItens(data);
-    })
-        
+        setTimeout(() => {
+            modal.classList.remove("active");
+            modal.classList.remove("closing");
+        }, 600);
+    }
 
-}
-
-function aplicarFiltros(categoria, status) {
-
-    const filtrados = allItens.filter((item) => {
-        const passCategoria = !categoria || categoria === '' || item.nome_categoria === categoria
-        const passStatus = !status || status === '' || item.status === status
-        const passBusca = termoBusca === '' || (item.titulo && item.titulo.toLowerCase().includes(termoBusca));
-
-        return passCategoria && passStatus && passBusca
-    });
-
-    renderizarItens(filtrados)
-}
-
-function limparFiltro () {
-    document.getElementById("select_categoria_filtro").value = ''
-    document.getElementById("select_status_filtro").value = ''
-    termoBusca = ''
-
-    const inputBusca = document.getElementById('ipt_search_bar').value = ''
-    
-    setTimeout(() => {
-        fecharItemCard(modalFiltro)
-    }, "1000");
-    
-
-    renderizarItens(allItens)
-}
-
-function renderizarItens(data) {
+    function carregarItens() {
+        const usuarioId = sessionStorage.getItem("ID_USUARIO");
 
 
-    fieldList.innerHTML = ''
-    qtdItems = 0
+        fetch(`/itens/buscar-timeline/${usuarioId}`)
+            .then((resposta) => { return resposta.json() })
+            .then((data) => {
 
-    data.forEach((item) => {
-        const newItem = document.createElement("div");
-        newItem.setAttribute("id", "new_item" + qtdItems);
-        newItem.classList.add("item-anim");
-    
-        const firstItem = fieldList.querySelector(".item");
-    
-        if (firstItem) {
-            fieldList.insertBefore(newItem, firstItem.parentNode);
-        } else {
-            fieldList.appendChild(newItem);
-        }
-
-        let num = item.horas;
-        let numInteiro = Math.trunc(num);
-        let parteDecimal = ((num % 1).toFixed(2) * 60)
-        let horaFormatada = `${numInteiro}h${parteDecimal}min`
-    
-        let statusFormatado = item.status.toUpperCase().replace("_", " ")
-        let generoFormatado = item.nome_genero.toLowerCase()
+                allItens = data
+                renderizarItens(data);
+            })
 
 
-        const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    }
+
+    function aplicarFiltros(categoria) {
+
+        const filtrados = allItens.filter((item) => {
+            const passCategoria = !categoria || categoria === '' || item.nome_categoria === categoria
+            const passBusca = termoBusca === '' || (item.titulo && item.titulo.toLowerCase().includes(termoBusca));
+
+            return passCategoria && passBusca
+        });
+
+        renderizarItens(filtrados)
+    }
+
+    function limparFiltro() {
+        document.getElementById("select_categoria_filtro").value = ''
+        // document.getElementById("select_status_filtro").value = ''
+        termoBusca = ''
+
+        const inputBusca = document.getElementById('ipt_search_bar').value = ''
+
+        setTimeout(() => {
+            fecharItemCard(modalFiltro)
+        }, "1000");
+
+
+        renderizarItens(allItens)
+    }
+
+    function renderizarItens(data) {
+
+
+        fieldList.innerHTML = ''
+        qtdItems = 0
+
+        data.forEach((item) => {
+            const newItem = document.createElement("div");
+            newItem.setAttribute("id", "new_item" + qtdItems);
+            newItem.classList.add("item-anim");
+
+            const firstItem = fieldList.querySelector(".item");
+
+            if (firstItem) {
+                fieldList.insertBefore(newItem, firstItem.parentNode);
+            } else {
+                fieldList.appendChild(newItem);
+            }
+
+            let num = item.horas;
+            let numInteiro = Math.trunc(num);
+            let parteDecimal = ((num % 1).toFixed(2) * 60)
+            let horaFormatada = `${numInteiro}h${parteDecimal}min`
+
+            let statusFormatado = item.status.toUpperCase().replace("_", " ")
+            let generoFormatado = item.nome_genero.toLowerCase()
+
+
+            const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
 
 
 
-        document.getElementById("new_item" + qtdItems).innerHTML = `
+            document.getElementById("new_item" + qtdItems).innerHTML = `
             <div class="item" onclick="getItem(${item.id})">
                 <div class="information">
                     <h4 class="item-header">${item.titulo}</h4>
@@ -300,37 +359,37 @@ function renderizarItens(data) {
             </div>
         `;
 
-        requestAnimationFrame(() => {
-            newItem.classList.add("show");
-        });
+            requestAnimationFrame(() => {
+                newItem.classList.add("show");
+            });
 
-        qtdItems++; 
-    })
-}
+            qtdItems++;
+        })
+    }
 
-function getItem(itemId) {
-    divCard.innerHTML = ""
-    console.log("item clicado: ", itemId)
+    function getItem(itemId) {
+        divCard.innerHTML = ""
+        console.log("item clicado: ", itemId)
 
-    fetch(`/itens/buscar-item/${itemId}`)
-    .then((resposta) => { return resposta.json() })
-    .then((data) => {
-        console.log("FETCH DO GETITEM() FUNCIONANDO. DADOS=> ", data)
-        
-        itemAtual = data[0]
-        let num = data[0].horas;
-        let numInteiro = Math.trunc(num);
-        let parteDecimal = ((num % 1).toFixed(2) * 60)
-        let horaFormatada = `${numInteiro}h${parteDecimal}min`
-    
-        let statusFormatado = data[0].status.toUpperCase().replace("_", " ")
-        let generoFormatado = data[0].nome_genero.toLowerCase()
+        fetch(`/itens/buscar-item/${itemId}`)
+            .then((resposta) => { return resposta.json() })
+            .then((data) => {
+                console.log("FETCH DO GETITEM() FUNCIONANDO. DADOS=> ", data)
+
+                itemAtual = data[0]
+                let num = data[0].horas;
+                let numInteiro = Math.trunc(num);
+                let parteDecimal = ((num % 1).toFixed(2) * 60)
+                let horaFormatada = `${numInteiro}h${parteDecimal}min`
+
+                let statusFormatado = data[0].status.toUpperCase().replace("_", " ")
+                let generoFormatado = data[0].nome_genero.toLowerCase()
 
 
-        const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
-        
-        let campoResenha = data[0].resenha == null ?  
-            `<div class="select-card-resenha anim-fade-up anim-d3"> 
+                const meses = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+
+                let campoResenha = data[0].resenha == null ?
+                    `<div class="select-card-resenha anim-fade-up anim-d3"> 
                 <h3>Escreva sua resenha aqui.</h3>
                 <div class="wishlist-content-text">
                     <textarea name="" id="textarea_resenha"></textarea>
@@ -340,8 +399,8 @@ function getItem(itemId) {
                     </div>
                 </div>
             </div>`
-            :
-            `<div class="select-card-resenha anim-fade-up anim-d3"> 
+                    :
+                    `<div class="select-card-resenha anim-fade-up anim-d3"> 
                 <h3>Sua resenha.</h3>
                 <div class="wishlist-content-text">
                     <p>${data[0].resenha}
@@ -355,8 +414,8 @@ function getItem(itemId) {
                 </div>
             </div>`;
 
-        divCard.innerHTML =
-            `
+                divCard.innerHTML =
+                    `
             <div class="content-selected-header anim-scale-in anim-d1">
                 <div class="selected-image anim-fade-up anim-d3">
                     <img id="poster-image-wishlist" src="${data[0].url_imagem}" alt="">
@@ -369,7 +428,7 @@ function getItem(itemId) {
                         <span>Gênero: ${data[0].nome_genero}</span> 
                         <span>Duração: ${horaFormatada}</span> 
                         <span>Status: ${statusFormatado}</span> 
-                        <span>Cadastro: ${data[0].dia_criacao} de ${meses[data[0].mes_criacao -1]}, ${data[0].ano_criacao}</span> <br>
+                        <span>Cadastro: ${data[0].dia_criacao} de ${meses[data[0].mes_criacao - 1]}, ${data[0].ano_criacao}</span> <br>
                         <div class="status-row">
                             <span>Nota: </span>
 
@@ -388,13 +447,13 @@ function getItem(itemId) {
             ${campoResenha}
             `;
 
-            console.log(data[0].classificacao)
-            aplicarClassificacaoSalva(data[0].classificacao);
-            document.querySelector('.avaliacao').addEventListener('click', function(e) {
-                if (!e.target.classList.contains('star-icon')) return;
-                changeClassificacao(e, itemId);
-            });
-    })
-}
+                console.log(data[0].classificacao)
+                aplicarClassificacaoSalva(data[0].classificacao);
+                document.querySelector('.avaliacao').addEventListener('click', function (e) {
+                    if (!e.target.classList.contains('star-icon')) return;
+                    changeClassificacao(e, itemId);
+                });
+            })
+    }
 
 </script>
