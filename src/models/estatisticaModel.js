@@ -5,7 +5,7 @@ var database = require("../database/config");
 // horasPorCategoria
 // metasVsConcluidos
 
-function consumoMensal(usuarioId) {
+function consumoMensal(usuarioId, anoDados) {
     var instrucao = `
         select month(i.concluido_em) mes,
             c.nome_categoria, 
@@ -21,7 +21,7 @@ function consumoMensal(usuarioId) {
     return database.executar(instrucao);
 }
 
-function horasPorCategoria(usuarioId) {
+function horasPorCategoria(usuarioId, anoDados) {
     var instrucao = `
         select 
             c.nome_categoria,
@@ -36,7 +36,7 @@ function horasPorCategoria(usuarioId) {
     return database.executar(instrucao);    
 }
 
-function metasVsConcluidos(usuarioId) {
+function metasVsConcluidos(usuarioId, anoDados) {
     var instrucao = `
         select 
         c.nome_categoria,
@@ -68,7 +68,7 @@ function kpiConcluidos(usuarioId, anoDados) {
     return database.executar(instrucao);
 }
 
-function kpiHorasTotais(usuarioId) {
+function kpiHorasTotais(usuarioId, anoDados) {
     var instrucao = `
         select 
             concat(round(sum(horas), 0), 'h' )total_horas
@@ -80,7 +80,7 @@ function kpiHorasTotais(usuarioId) {
     return database.executar(instrucao);
 }
 
-function kpiHorasSemanais(usuarioId) {
+function kpiHorasSemanais(usuarioId, anoDados) {
     var instrucao = `
         select 
         concat(
@@ -94,7 +94,7 @@ function kpiHorasSemanais(usuarioId) {
     return database.executar(instrucao);
 }
 
-function kpiTaxaConclusao(usuarioId) {
+function kpiTaxaConclusao(usuarioId, anoDados) {
     var instrucao = `
         select 
         concat(round((count(*) / (
@@ -110,6 +110,8 @@ function kpiTaxaConclusao(usuarioId) {
 
     return database.executar(instrucao);
 }
+
+
 
 function frequenciaDeConsumo(usuarioId) {
     var instrucao = `

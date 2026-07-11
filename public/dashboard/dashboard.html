@@ -119,11 +119,10 @@
                     </div>
                     <div class="kpi-mensagem">
                         <h3 class="kpi-main-data">
-                            <span id="kpi-concluidos"></span>
+                            <span id="kpi-ano-dados"></span>
                         </h3>
                         <div class="div-card-select-dash">
                             <select name="" id="select_current_year">
-                                <!-- <option value="2026">2026</option> -->
                             </select>
                         </div>
                         <!-- <span>itens em 2026</span> -->
@@ -234,14 +233,12 @@
             return;
         }
 
-        carregarKpis();
-        carregarDonut();
-        carregarLinhas();
-        carregarMetas();
-        carregarHeatmap();
         anoDados();
     })
 
+    selectAnoDados.addEventListener("change", () => {
+        anoDados();
+    })
 
     function carregarKpis() {
         const anoDados = selectAnoDados.value
@@ -565,7 +562,7 @@ function carregarHeatmap() {
 function anoDados() {
         
     const anoAtual = new Date().getFullYear()
-    
+
     fetch(`/estatisticas/buscar-ano-dados/${usuarioId}`)
         .then((resposta) => { return resposta.json() })
         .then((data) => {
@@ -573,10 +570,17 @@ function anoDados() {
             
             for (let i = anoAtual; i > anoCriacao - 1; i--) {
                 const option = document.createElement("option")
+                console.log(i)
                 option.value = i
                 option.text = i
 
                 selectAnoDados.appendChild(option)
+
+                carregarKpis();
+                carregarDonut();
+                carregarLinhas();
+                carregarMetas();
+                carregarHeatmap();
             }
         }).catch((error) => {
             console.error("Erro no fetch da busca do ano", error)
