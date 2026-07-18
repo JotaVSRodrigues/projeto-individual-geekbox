@@ -77,7 +77,7 @@
                         <h3 class="kpi-main-data">
                             <span id="kpi-concluidos"></span>
                         </h3>
-                        <span>itens concluídos</span>
+                        <span>itens concluídos em <span id="span-distribuicao-ano"></span></span>
                     </div>
                 </div>
                 <div class="dash-card kpi" id="kpi-2">
@@ -157,7 +157,7 @@
                             <h3 class="dash-main-data">
                                 Horas por categoria
                             </h3>
-                            <span class="subtitle-card">distribuição em 2026</span>
+                            <span class="subtitle-card">distribuição em <span id="span-distribuicao"></span></span>
                         </div>
                         <div class="chart">
                             <canvas id="grafico-donut">
@@ -195,7 +195,7 @@
                             <h3 class="dash-main-data">
                                 Frequência de consumo
                             </h3>
-                            <span class="subtitle-card">itens por semana</span>
+                            <span class="subtitle-card">itens por dia</span>
                             <div class="subtitle-heatmap">
                                 <span>Less</span>
                                 <div class="quadrado"></div>
@@ -228,6 +228,8 @@
 
     const usuarioId = sessionStorage.getItem("ID_USUARIO");
     const selectAnoDados = document.getElementById("select_current_year")
+    const spanAnoDistribuicao = document.getElementById("span-distribuicao")
+    const spanAno = document.getElementById("span-distribuicao-ano")
 
     let graficoLinha = null;
     let graficoDonut = null;
@@ -253,11 +255,13 @@
         carregarLinhas();
         carregarMetas();
         carregarHeatmap();
+
+        spanAnoDistribuicao.innerHTML = selectAnoDados.value
     })
 
     function carregarKpis() {
         const anoDados = selectAnoDados.value
-
+        spanAno.innerHTML = selectAnoDados.value
         fetch(`/estatisticas/kpi-concluidos/${usuarioId}/${anoDados}`)
             .then(function (resposta) {
                 return resposta.json();
@@ -410,6 +414,7 @@
 
     function carregarDonut() {
         const anoDados = selectAnoDados.value
+        spanAnoDistribuicao.innerHTML = selectAnoDados.value
 
         fetch(`/estatisticas/horas-por-categoria/${usuarioId}/${anoDados}`)
             .then(function (resposta) { return resposta.json() })
