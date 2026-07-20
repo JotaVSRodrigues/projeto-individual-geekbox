@@ -112,6 +112,33 @@
     width: 90%;
     line-height: 1;
 }
+
+.banner .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-image {
+    position: absolute;
+    left:9%;
+    top: 55%;
+}
+
+.logo-image img {
+    height: 140px;
+}
+
+/* .side-image {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.side-image img {
+    display: block;
+    max-height: 90vh;
+} */
 /* 
 .banner .container p {
   width: 40%;
